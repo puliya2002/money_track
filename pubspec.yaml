@@ -39,6 +39,7 @@ dependencies:
   firebase_core: ^2.27.1
   font_awesome_flutter: ^10.7.0
   cloud_firestore: ^4.15.9
+  provider: ^6.1.2
 
 
 dev_dependencies:

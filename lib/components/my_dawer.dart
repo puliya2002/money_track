@@ -86,8 +86,39 @@ class _MyDrawerState extends State<MyDrawer> {
                       ListTile(
                         leading: Icon(Icons.format_paint,),
                         title: Text("Theme"),
-                        onTap: (){
+                        onTap: () {
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                title: const Text("Select Theme"),
+                                content: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    ListTile(
+                                      title: const Text("Light Theme"),
+                                      onTap: () {
 
+
+                                      },
+                                    ),
+                                    ListTile(
+                                      title: const Text("Dark Theme"),
+                                      onTap: () {
+
+                                      },
+                                    ),
+                                    ListTile(
+                                      title: const Text("System Default"),
+                                      onTap: () {
+
+                                      },
+                                    ),
+                                  ],
+                                ),
+                              );
+                            },
+                          );
                         },
                       ),
 
