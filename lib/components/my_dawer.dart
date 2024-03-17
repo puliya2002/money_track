@@ -2,6 +2,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:money_track/pages/main_screen.dart';
+import 'package:provider/provider.dart';
+
+import '../theme/theme_provider.dart';
 
 class MyDrawer extends StatefulWidget {
   const MyDrawer({super.key});
@@ -79,6 +83,8 @@ class _MyDrawerState extends State<MyDrawer> {
                         leading: Icon(Icons.home),
                         title: Text("Home"),
                         onTap: (){
+                          Navigator.pop(context); // Close the drawer
+
 
                         },
                       ),
@@ -98,21 +104,28 @@ class _MyDrawerState extends State<MyDrawer> {
                                     ListTile(
                                       title: const Text("Light Theme"),
                                       onTap: () {
-
+                                        Provider.of<ThemeProvider>(context, listen: false)
+                                            .setTheme(ThemeType.Light);
 
                                       },
+                                      selected: Provider.of<ThemeProvider>(context).getCurrentTheme() == ThemeType.Light,
                                     ),
                                     ListTile(
                                       title: const Text("Dark Theme"),
                                       onTap: () {
-
+                                        Provider.of<ThemeProvider>(context, listen: false)
+                                            .setTheme(ThemeType.Dark);
                                       },
+                                      selected: Provider.of<ThemeProvider>(context).getCurrentTheme() == ThemeType.Dark,
                                     ),
+
                                     ListTile(
                                       title: const Text("System Default"),
                                       onTap: () {
-
+                                        Provider.of<ThemeProvider>(context, listen: false)
+                                            .setTheme(ThemeType.System);
                                       },
+                                      selected: Provider.of<ThemeProvider>(context).getCurrentTheme() == ThemeType.System,
                                     ),
                                   ],
                                 ),

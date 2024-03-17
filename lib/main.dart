@@ -4,6 +4,8 @@ import 'package:money_track/pages/register_page.dart';
 import 'package:money_track/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:money_track/theme/theme_provider.dart';
+import 'package:provider/provider.dart';
 
 import 'pages/login_page.dart';
 import 'auth/main_page.dart';
@@ -21,7 +23,9 @@ void main() async {
     ),
   )
       : await Firebase.initializeApp();
-  runApp(const MyApp());
+  runApp(ChangeNotifierProvider(
+    create: (context) => ThemeProvider(),
+    child: const MyApp(),),);
 }
 
 class MyApp extends StatelessWidget {
@@ -34,8 +38,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
 
       debugShowCheckedModeBanner: false,
-      theme: lightMode,
-      darkTheme: darkMode,
+      theme: Provider.of<ThemeProvider>(context).getTheme(),
       // theme: ThemeData(
       //   colorScheme: const ColorScheme.light(
       //     background: Color(0xFFf3f6f9),
