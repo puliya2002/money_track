@@ -27,239 +27,242 @@ class _MainScreenState extends State<MainScreen> {
         padding: const EdgeInsets.symmetric(horizontal: 22.0, vertical: 10),
         child: Column(
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: [
-                    Column(
-                      children: [
-                        Stack(
-                          alignment: Alignment.center,
-                          children: [
-                            Container(
-                              width: 30,
-                              height: 30,
-                              decoration: const BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: Colors.yellow,
+            // Row(
+            //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //   children: [
+            //     Row(
+            //       children: [
+            //         Column(
+            //           children: [
+            //             Stack(
+            //               alignment: Alignment.center,
+            //               children: [
+            //                 Container(
+            //                   width: 30,
+            //                   height: 30,
+            //                   decoration: const BoxDecoration(
+            //                     shape: BoxShape.circle,
+            //                     color: Colors.yellow,
+            //                   ),
+            //                 ),
+            //                 Icon(
+            //                   CupertinoIcons.person_fill,
+            //                   color: Colors.black,
+            //                   size: 18,
+            //                 ),
+            //               ],
+            //             ),
+            //           ],
+            //         ),
+            //         const SizedBox(width: 8),
+            //         Column(
+            //           crossAxisAlignment: CrossAxisAlignment.start,
+            //           children: [
+            //             Text(
+            //               "Welcome!",
+            //               style: TextStyle(
+            //                   color: Theme.of(context).colorScheme.onBackground,
+            //                   fontWeight: FontWeight.w400,
+            //                   fontSize: 10),
+            //             ),
+            //             Text(
+            //               user.email!,
+            //               style: TextStyle(
+            //                   color: Theme.of(context).colorScheme.onBackground,
+            //                   fontWeight: FontWeight.w600,
+            //                   fontSize: 14),
+            //             ),
+            //           ],
+            //         ),
+            //       ],
+            //     ),
+            //     Row(
+            //       children: [
+            //         IconButton(
+            //           onPressed: () {
+            //             FirebaseAuth.instance.signOut();
+            //           },
+            //           icon: const Icon(
+            //               Icons.logout
+            //           ),
+            //         ),
+            //         IconButton(
+            //           onPressed: () {},
+            //           icon: const Icon(
+            //               Icons.menu_rounded
+            //           ),
+            //         ),
+            //
+            //       ],
+            //     )
+            //   ],
+            // ),
+            // const SizedBox(
+            //   height: 10,
+            // ),
+            Padding(
+              padding: const EdgeInsets.only(top: 8),
+              child: Container(
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.width / 2,
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [
+                      Theme.of(context).colorScheme.secondary,
+                      Theme.of(context).colorScheme.primary,
+                    ],
+                    transform: const GradientRotation(pi / 3),
+                  ),
+                  borderRadius: BorderRadius.circular(25),
+                  boxShadow: [
+                    BoxShadow(
+                        blurRadius: 20,
+                        color: Theme.of(context).colorScheme.shadow.withOpacity(0.4),
+                        offset: Offset(2, 1))
+                  ],
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Column(
+                        children: [
+                          Text(
+                            "Balance",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 20,
+                                fontWeight: FontWeight.w500),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Column(
+                                children: [
+                                  SizedBox(
+                                    height: 15,
+                                  ),
+                                  Text(
+                                    "LKR",
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w600),
+                                  ),
+                                ],
                               ),
-                            ),
-                            Icon(
-                              CupertinoIcons.person_fill,
-                              color: Colors.black,
-                              size: 18,
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                    const SizedBox(width: 8),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Welcome!",
-                          style: TextStyle(
-                              color: Theme.of(context).colorScheme.onBackground,
-                              fontWeight: FontWeight.w400,
-                              fontSize: 10),
-                        ),
-                        Text(
-                          user.email!,
-                          style: TextStyle(
-                              color: Theme.of(context).colorScheme.onBackground,
-                              fontWeight: FontWeight.w600,
-                              fontSize: 14),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-                Row(
-                  children: [
-                    IconButton(
-                      onPressed: () {
-                        FirebaseAuth.instance.signOut();
-                      },
-                      icon: const Icon(
-                          Icons.logout
+                              Text(
+                                "1500.00",
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 40,
+                                    fontWeight: FontWeight.w600),
+                              ),
+                            ],
+                          ),
+                        ],
                       ),
-                    ),
-                    IconButton(
-                      onPressed: () {},
-                      icon: const Icon(
-                          Icons.menu_rounded
-                      ),
-                    ),
-
-                  ],
-                )
-              ],
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            Container(
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.width / 2,
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [
-                    Theme.of(context).colorScheme.secondary,
-                    Theme.of(context).colorScheme.primary,
-                  ],
-                  transform: const GradientRotation(pi / 3),
-                ),
-                borderRadius: BorderRadius.circular(25),
-                boxShadow: [
-                  BoxShadow(
-                      blurRadius: 20,
-                      color: Theme.of(context).colorScheme.shadow.withOpacity(0.4),
-                      offset: Offset(2, 1))
-                ],
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(15.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const Column(
-                      children: [
-                        Text(
-                          "Balance",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 20,
-                              fontWeight: FontWeight.w500),
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Column(
-                              children: [
-                                SizedBox(
-                                  height: 15,
-                                ),
-                                Text(
-                                  "LKR",
-                                  style: TextStyle(
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            children: [
+                              Stack(
+                                alignment: Alignment.center,
+                                children: [
+                                  Container(
+                                    width: 40,
+                                    height: 40,
+                                    decoration: const BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: Color.fromARGB(226, 255, 255, 255),
+                                    ),
+                                  ),
+                                  const Icon(
+                                    CupertinoIcons.arrow_down,
+                                    color: Colors.red,
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(
+                                width: 5,
+                              ),
+                              const Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "Expenses",
+                                    style: TextStyle(
                                       color: Colors.white,
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w600),
-                                ),
-                              ],
-                            ),
-                            Text(
-                              "1500.00",
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 40,
-                                  fontWeight: FontWeight.w600),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          children: [
-                            Stack(
-                              alignment: Alignment.center,
-                              children: [
-                                Container(
-                                  width: 40,
-                                  height: 40,
-                                  decoration: const BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color: Color.fromARGB(226, 255, 255, 255),
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 14,
+                                    ),
                                   ),
-                                ),
-                                const Icon(
-                                  CupertinoIcons.arrow_down,
-                                  color: Colors.red,
-                                ),
-                              ],
-                            ),
-                            const SizedBox(
-                              width: 5,
-                            ),
-                            const Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "Expenses",
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 14,
+                                  Text(
+                                    "150000.00",
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 20,
+                                    ),
                                   ),
-                                ),
-                                Text(
-                                  "150000.00",
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 20,
+                                ],
+                              ),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Stack(
+                                alignment: Alignment.center,
+                                children: [
+                                  Container(
+                                    width: 40,
+                                    height: 40,
+                                    decoration: const BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: Color.fromARGB(226, 255, 255, 255),
+                                    ),
                                   ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            Stack(
-                              alignment: Alignment.center,
-                              children: [
-                                Container(
-                                  width: 40,
-                                  height: 40,
-                                  decoration: const BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color: Color.fromARGB(226, 255, 255, 255),
+                                  const Icon(
+                                    CupertinoIcons.arrow_up,
+                                    color: Colors.green,
                                   ),
-                                ),
-                                const Icon(
-                                  CupertinoIcons.arrow_up,
-                                  color: Colors.green,
-                                ),
-                              ],
-                            ),
-                            const SizedBox(
-                              width: 5,
-                            ),
-                            const Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "Expenses",
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 14,
+                                ],
+                              ),
+                              const SizedBox(
+                                width: 5,
+                              ),
+                              const Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "Expenses",
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 14,
+                                    ),
                                   ),
-                                ),
-                                Text(
-                                  "150000.00",
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 20,
+                                  Text(
+                                    "150000.00",
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 20,
+                                    ),
                                   ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                    const Row(
-                      children: [],
-                    ),
-                  ],
+                                ],
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                      const Row(
+                        children: [],
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),

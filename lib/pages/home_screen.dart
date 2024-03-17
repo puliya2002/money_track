@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:money_track/components/my_dawer.dart';
 import 'package:money_track/pages/states_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -36,7 +37,21 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //appBar: AppBar(),
+        appBar: PreferredSize(
+          preferredSize: Size.fromHeight(40.0),
+          child: AppBar(
+            backgroundColor: Theme.of(context).colorScheme.background,
+            elevation: 0,
+
+            title: Image.asset("assets/Logo.png", height: 45,),
+            centerTitle: true,
+
+          ),
+        ),
+
+        drawer: MyDrawer(),
+
+
         bottomNavigationBar: ClipRRect(
           borderRadius: const BorderRadius.vertical(
             top: Radius.circular(50),
