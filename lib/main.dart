@@ -14,10 +14,10 @@ void main() async {
   Platform.isAndroid?
   await Firebase.initializeApp(
     options: const FirebaseOptions(
-      apiKey: "AIzaSyDq4qyRToh1Rp9bZ5CFzm6-nU7EpMwlRmI",
-      appId: "1:884136659220:android:841fb1cd2bfe2a74169a01",
-      messagingSenderId: "884136659220",
-      projectId: "fir-tutorial-fa351",
+      apiKey: "AIzaSyBC4X0o96xhTn2ppS3l7AYHoFqRFjfS4nQ",
+      appId: "1:34873365969:android:894a255f833f51c8d2bcf0",
+      messagingSenderId: "34873365969",
+      projectId: "money-track-3cf70",
     ),
   )
       : await Firebase.initializeApp();
