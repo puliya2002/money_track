@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 
 
 
+import '../widgets/add_transaction_form.dart';
 import 'main_screen.dart';
 
 
@@ -21,6 +22,14 @@ class HomeScreen extends StatefulWidget {
 
 
 class _HomeScreenState extends State<HomeScreen> {
+  //last added change
+  _dialogBuilder(BuildContext context){
+    return showDialog(context: context, builder: (context){
+      return AlertDialog(
+        content: AddTransactionForm(),
+      );
+    });
+  }
 
 
   final user = FirebaseAuth.instance.currentUser!;
@@ -88,6 +97,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   BottomNavigationBarItem(
                     icon: Container(
                       alignment: AlignmentDirectional.centerEnd,
+
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 10),
                         child: Icon(
@@ -134,11 +144,15 @@ class _HomeScreenState extends State<HomeScreen> {
                 scale: 1.8,
                 child: FloatingActionButton(
 
+
                   mini: false,
-                  onPressed: () {},
+                  onPressed: (() {
+                    _dialogBuilder(context);
+                  }),
                   elevation: 0.0,
                   shape: const CircleBorder(),
                   child: Container(
+
                     width: 80,
                     height: 80,
 

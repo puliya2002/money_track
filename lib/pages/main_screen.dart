@@ -1,13 +1,17 @@
 import 'dart:math';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import 'package:money_track/model/category_model.dart';
 
-import '../data/data.dart';
-
-
+import '../service/category_service.dart';
+import '../widgets/transactions_card.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -17,10 +21,60 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-
   final user = FirebaseAuth.instance.currentUser!;
 
+  // //////////////////////////////////////////latest start
+  //
+  // List<GetCategories> categoryItems = [];
+  //
+  // @override
+  // void initState() {
+  //   fetchRecords();
+  //   super.initState();
+  // }
+  //
+  // fetchRecords() async {
+  //   try {
+  //     var records =
+  //         await FirebaseFirestore.instance.collection('category').get();
+  //     mapRecords(records);
+  //   } catch (e) {
+  //     print('Error fetching records: $e');
+  //   }
+  // }
+  //
+  // mapRecords(QuerySnapshot<Map<String, dynamic>> records) {
+  //   var _list = records.docs
+  //       .map((category) => GetCategories(
+  //             id: category.id,
+  //             name: category['name'],
+  //             color: category['color'],
+  //             icon: category['icon'],
+  //           ))
+  //       .toList();
+  //
+  //   setState(() {
+  //     categoryItems = _list;
+  //   });
+  // }
+  // //////////////////////////////////////////////////////////latest end
+
+  // //document IDs
+  // List<String> docIDs = [];
+  //
+  // //get docIDs
+  // Future getDocId() async {
+  //   await FirebaseFirestore.instance
+  //       .collection('category')
+  //       .get()
+  //       .then((snapshot) => snapshot.docs.forEach((document) {
+  //             print(document.reference);
+  //             docIDs.add(document.reference.id);
+  //           }));
+  // }
+
   @override
+
   Widget build(BuildContext context) {
     return SafeArea(
       child: Padding(
@@ -117,7 +171,10 @@ class _MainScreenState extends State<MainScreen> {
                   boxShadow: [
                     BoxShadow(
                         blurRadius: 20,
-                        color: Theme.of(context).colorScheme.shadow.withOpacity(0.4),
+                        color: Theme.of(context)
+                            .colorScheme
+                            .shadow
+                            .withOpacity(0.4),
                         offset: Offset(2, 1))
                   ],
                 ),
@@ -295,7 +352,9 @@ class _MainScreenState extends State<MainScreen> {
                             width: 65,
                             height: 23,
                             decoration: BoxDecoration(
-                                color: Theme.of(context).colorScheme.primaryContainer,
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .primaryContainer,
                                 borderRadius: BorderRadius.circular(100)),
                           ),
                           Text(
@@ -303,7 +362,10 @@ class _MainScreenState extends State<MainScreen> {
                             style: TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.w600,
-                              color: Theme.of(context).colorScheme.onBackground.withOpacity(0.6),
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .onBackground
+                                  .withOpacity(0.6),
                             ),
                           ),
                         ],
@@ -321,7 +383,9 @@ class _MainScreenState extends State<MainScreen> {
                             width: 79,
                             height: 23,
                             decoration: BoxDecoration(
-                                color: Theme.of(context).colorScheme.primaryContainer,
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .primaryContainer,
                                 borderRadius: BorderRadius.circular(100)),
                           ),
                           Text(
@@ -329,7 +393,10 @@ class _MainScreenState extends State<MainScreen> {
                             style: TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.w600,
-                              color: Theme.of(context).colorScheme.onBackground.withOpacity(0.9),
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .onBackground
+                                  .withOpacity(0.9),
                             ),
                           ),
                         ],
@@ -342,102 +409,8 @@ class _MainScreenState extends State<MainScreen> {
             const SizedBox(
               height: 15,
             ),
-            Expanded(
-              child: ListView.builder(
 
-                itemCount: transactionsData.length,
-                itemBuilder: (context, int i) {
-                  return Padding(
-                    padding: const EdgeInsets.only(bottom: 18),
-                    child: Container(
-                      width: 30,
-                      height: 75,
-                      decoration: BoxDecoration(
-                        color: Theme.of(context).colorScheme.primaryContainer,
-                        borderRadius: BorderRadius.circular(18),
-                        boxShadow: [
-                          BoxShadow(
-                              blurRadius: 16,
-                              color: Theme.of(context).colorScheme.shadow.withOpacity(0.1),
-
-                              offset: Offset(2, 4))
-                        ],
-
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 15),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Row(
-                              children: [
-                                Stack(
-                                  alignment: Alignment.center,
-                                  children: [
-                                    Container(
-                                      width: 47,
-                                      height: 47,
-
-                                      decoration: BoxDecoration(
-                                        color: transactionsData[i]['color'],
-                                        shape: BoxShape.circle,
-                                      ),
-                                    ),
-                                    transactionsData[i]['icon'],
-
-                                  ],
-                                ),
-                                const SizedBox(
-                                  width: 12,
-                                ),
-                                Text(
-                                  transactionsData[i]['name'],
-                                  style: TextStyle(
-                                      color: Theme.of(context).colorScheme.onBackground.withOpacity(0.9),
-                                      fontWeight: FontWeight.w800,
-                                      fontSize: 16),
-                                ),
-                              ],
-
-                            ),
-                            Row(
-                              children: [
-                                Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.end,
-                                  children: [
-
-                                    Text(
-                                      transactionsData[i]['totalAmount'],
-                                      style: TextStyle(
-                                          color: Theme.of(context).colorScheme.onBackground.withOpacity(0.9),
-                                          fontWeight: FontWeight.w600,
-                                          fontSize: 15),
-                                    ),
-
-                                    Text(
-                                      transactionsData[i]['date'],
-                                      style: TextStyle(
-                                          color: Theme.of(context).colorScheme.onBackground.withOpacity(0.6),
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: 13),
-                                    ),
-                                  ],
-
-
-                                ),
-
-                              ],
-
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
-                  );
-                },
-              ),
-            ),
+            TransactionsCard()
           ],
         ),
       ),
