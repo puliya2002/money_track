@@ -35,7 +35,7 @@ class _HomeScreenState extends State<HomeScreen> {
   final user = FirebaseAuth.instance.currentUser!;
 
   var wigetList = [
-    MainScreen(),
+    MainScreen(userID: 'user',),
     StatScreen(),
   ];
 
@@ -214,6 +214,6 @@ class _HomeScreenState extends State<HomeScreen> {
             ],
           ),
         ),
-        body: index == 0 ? MainScreen() : StatScreen());
+        body: index == 0 ? MainScreen(userID: 'user',) : StatScreen());
   }
 }

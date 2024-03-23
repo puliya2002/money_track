@@ -14,11 +14,58 @@ import '../service/category_service.dart';
 import '../widgets/transactions_card.dart';
 
 class MainScreen extends StatefulWidget {
-  const MainScreen({super.key});
+  MainScreen({super.key, required this.userID});
+  final String userID;
+  final Stream<DocumentSnapshot> _usersStream = FirebaseFirestore.instance.collection('users').doc().snapshots();
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return StreamBuilder<DocumentSnapshot>(
+      stream: _usersStream,
+      builder: (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
+        if (snapshot.hasError) {
+          return Text('Something went wrong');
+        }
+
+        if (!snapshot.hasData || !snapshot.data!.exists) {
+          return Text("Document does now exist");
+        }
+
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return Text("Loading");
+        }
+
+        var data = snapshot.data!.data();
+
+        return Cards();
+
+
+      },
+
+
+    );
+
+
+
+  }
+
+
+
 
   @override
   State<MainScreen> createState() => _MainScreenState();
+
+
+
+  
 }
+
+
+
+
+
+
 
 class _MainScreenState extends State<MainScreen> {
   final user = FirebaseAuth.instance.currentUser!;
@@ -73,8 +120,11 @@ class _MainScreenState extends State<MainScreen> {
   //           }));
   // }
 
-  @override
 
+
+
+
+  @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Padding(
