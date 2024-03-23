@@ -17,6 +17,10 @@ class AppIcons{
       "name" : "Food",
       "icon" : FontAwesomeIcons.burger,
     },
+    {
+      "name" : "Others",
+      "icon" : FontAwesomeIcons.cartShopping,
+    },
   ];
 
   IconData getExpenseCategoryIcons(String categoryName){
