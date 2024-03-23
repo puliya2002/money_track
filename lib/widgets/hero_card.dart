@@ -7,11 +7,12 @@ import 'package:flutter/material.dart';
 class HeroCard extends StatelessWidget {
   HeroCard({super.key, required this.UserId});
   final String UserId;
-  final Stream<DocumentSnapshot> _usersStream =
-  FirebaseFirestore.instance.collection('users').doc().snapshots();
+
 
   @override
   Widget build(BuildContext context){
+    final Stream<DocumentSnapshot> _usersStream =
+    FirebaseFirestore.instance.collection('users').doc(UserId).snapshots();
     return StreamBuilder<DocumentSnapshot>(
       stream: _usersStream,
       builder: (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
@@ -83,7 +84,7 @@ final Map data;
                           height: 15,
                         ),
                         Text(
-                          "LKR",
+                          "LKR ",
                           style: TextStyle(
                               color: Colors.white,
                               fontSize: 16,
@@ -127,7 +128,7 @@ final Map data;
                     const SizedBox(
                       width: 5,
                     ),
-                    const Column(
+                    Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
@@ -138,13 +139,33 @@ final Map data;
                             fontSize: 14,
                           ),
                         ),
-                        Text(
-                          "150000.00",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w600,
-                            fontSize: 20,
-                          ),
+                        Row(
+                          children: [
+
+                            Column(
+                              children: [
+                                SizedBox(
+                                  height: 3,
+                                ),
+                                Text(
+                                  "LKR ",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 10,
+                                      fontWeight: FontWeight.w600),
+                                ),
+                              ],
+                            ),
+
+                            Text(
+                              "${data['totalDebit']}",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w600,
+                                fontSize: 20,
+                              ),
+                            ),
+                          ],
                         ),
                       ],
                     ),
@@ -172,24 +193,42 @@ final Map data;
                     const SizedBox(
                       width: 5,
                     ),
-                    const Column(
+                    Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "Expenses",
+                          "Icome",
                           style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.w500,
                             fontSize: 14,
                           ),
                         ),
-                        Text(
-                          "150000.00",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w600,
-                            fontSize: 20,
-                          ),
+                        Row(
+                          children: [
+                            Column(
+                              children: [
+                                SizedBox(
+                                  height: 3,
+                                ),
+                                Text(
+                                  "LKR ",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 10,
+                                      fontWeight: FontWeight.w600),
+                                ),
+                              ],
+                            ),
+                            Text(
+                              "${data['totalCredit']}",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w600,
+                                fontSize: 20,
+                              ),
+                            ),
+                          ],
                         ),
                       ],
                     ),

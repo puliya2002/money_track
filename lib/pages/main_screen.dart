@@ -157,7 +157,7 @@ class _MainScreenState extends State<MainScreen> {
             // ),
             Padding(
               padding: const EdgeInsets.only(top: 8),
-              child: HeroCard(UserId: 'user',)
+              child: HeroCard(UserId: user.uid,)
             ),
             const SizedBox(
               height: 20,
