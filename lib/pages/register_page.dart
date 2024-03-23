@@ -8,8 +8,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-import '../service/db.dart';
-
 class RegisterPage extends StatefulWidget {
   final VoidCallback showLoginPage;
   const RegisterPage({super.key, required this.showLoginPage});
@@ -19,8 +17,6 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
-
-
 
 
   final _emailController = TextEditingController();
@@ -35,81 +31,66 @@ class _RegisterPageState extends State<RegisterPage> {
       return false;
   }
 
-
-
+  Future addUserDetails(String firstName, String email) async{
+    await FirebaseFirestore.instance.collection('users').add(
+        {
+          'first name' : firstName,
+          'email' : email,
+        }
+    );
+  }
 
 
   Future signUp() async {
-    // Show loading indicator
+
+    //loading Circle
     showDialog(
-      context: context,
-      builder: (context) {
-        return const Center(
-          child: CircularProgressIndicator(),
-        );
-      },
-    );
+        context: context,
+        builder: (context) {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        });
 
     try {
-      if (passwordConfirmed()) {
-        // Create user with email and password
-        UserCredential userCredential =
+      if (passwordConfirmed() == true){
         await FirebaseAuth.instance.createUserWithEmailAndPassword(
           email: _emailController.text.trim(),
           password: _passwordController.text.trim(),
         );
 
-        // Get the Firebase User object
-        User? user = userCredential.user;
+        //add user name
+        addUserDetails( _nameController.text.trim(), _emailController.text.trim(),);
 
-        if (user != null) {
-          // Add user details to Firestore using user UID as document ID
-          await FirebaseFirestore.instance
-              .collection('users')
-              .doc(user.uid) // Use UID as document ID
-              .set({
-            'first name': _nameController.text.trim(),
-            'email': _emailController.text.trim(),
-            'remainingAmount': 0,
-            'totalCredit': 0,
-            'totalDebit': 0
-          });
 
-          // Dismiss loading indicator
-          Navigator.pop(context);
-        } else {
-          // Dismiss loading indicator
-          Navigator.pop(context);
-          // Handle null user
-          print('User creation failed.');
-          showDialog(
-            context: context,
-            builder: (context) {
-              return AlertDialog(
-                content: Text('User creation failed.'),
-              );
-            },
-          );
-        }
-      } else {
-        // Dismiss loading indicator
+
+        //stop loading circle after loading
         Navigator.pop(context);
-        // Handle password mismatch
-        print('The password and confirm password do not match.');
+
+
+      } else {
+        //stop loading circle after loadinghb
+        Navigator.pop(context);
+
+        print('The password provided is too weak.');
         showDialog(
           context: context,
           builder: (context) {
             return AlertDialog(
-              content: Text('The password and confirm password do not match.'),
+              content: Text('New password and confirm password do not match'),
             );
           },
         );
+
       }
+
+
     } on FirebaseAuthException catch (e) {
-      // Dismiss loading indicator
-      Navigator.pop(context);
-      // Handle FirebaseAuth exceptions
       if (e.code == 'weak-password') {
+
+        //stop loading circle after loading
+        Navigator.pop(context);
+
         print('The password provided is too weak.');
         showDialog(
           context: context,
@@ -120,6 +101,10 @@ class _RegisterPageState extends State<RegisterPage> {
           },
         );
       } else if (e.code == 'email-already-in-use') {
+
+        //stop loading circle after loading
+        Navigator.pop(context);
+
         print('The account already exists for that email.');
         showDialog(
           context: context,
@@ -129,128 +114,27 @@ class _RegisterPageState extends State<RegisterPage> {
             );
           },
         );
-      } else {
-        print('Error: ${e.message}');
+      } else{
+        //stop loading circle after loading
+        Navigator.pop(context);
+
         showDialog(
           context: context,
           builder: (context) {
             return AlertDialog(
-              content: Text('Error: ${e.message}'),
+              content: Text('Invalid email or password'),
             );
           },
         );
+
       }
     } catch (e) {
-      // Dismiss loading indicator
-      Navigator.pop(context);
-      // Handle other exceptions
-      print(e.toString());
-      showDialog(
-        context: context,
-        builder: (context) {
-          return AlertDialog(
-            content: Text('An error occurred: $e'),
-          );
-        },
-      );
+      print(e);
     }
-  }
 
-  // Future signUp() async {
-  //
-  //   //loading Circle
-  //   showDialog(
-  //       context: context,
-  //       builder: (context) {
-  //         return const Center(
-  //           child: CircularProgressIndicator(),
-  //         );
-  //       });
-  //
-  //   try {
-  //     if (passwordConfirmed() == true){
-  //       await FirebaseAuth.instance.createUserWithEmailAndPassword(
-  //         email: _emailController.text.trim(),
-  //         password: _passwordController.text.trim(),
-  //       );
-  //
-  //
-  //       //add user name
-  //       addUserDetails( _nameController.text.trim(), _emailController.text.trim(),);
-  //
-  //
-  //
-  //       //stop loading circle after loading
-  //       Navigator.pop(context);
-  //
-  //
-  //     } else {
-  //       //stop loading circle after loadinghb
-  //       Navigator.pop(context);
-  //
-  //       print('The password provided is too weak.');
-  //       showDialog(
-  //         context: context,
-  //         builder: (context) {
-  //           return AlertDialog(
-  //             content: Text('New password and confirm password do not match'),
-  //           );
-  //         },
-  //       );
-  //
-  //     }
-  //
-  //
-  //   } on FirebaseAuthException catch (e) {
-  //     if (e.code == 'weak-password') {
-  //
-  //       //stop loading circle after loading
-  //       Navigator.pop(context);
-  //
-  //       print('The password provided is too weak.');
-  //       showDialog(
-  //         context: context,
-  //         builder: (context) {
-  //           return AlertDialog(
-  //             content: Text('The password provided is too weak.'),
-  //           );
-  //         },
-  //       );
-  //     } else if (e.code == 'email-already-in-use') {
-  //
-  //       //stop loading circle after loading
-  //       Navigator.pop(context);
-  //
-  //       print('The account already exists for that email.');
-  //       showDialog(
-  //         context: context,
-  //         builder: (context) {
-  //           return AlertDialog(
-  //             content: Text('The account already exists for that email.'),
-  //           );
-  //         },
-  //       );
-  //     } else{
-  //       //stop loading circle after loading
-  //       Navigator.pop(context);
-  //
-  //       showDialog(
-  //         context: context,
-  //         builder: (context) {
-  //           return AlertDialog(
-  //             content: Text('Invalid email or password'),
-  //           );
-  //         },
-  //       );
-  //
-  //     }
-  //   } catch (e) {
-  //     print(e);
-  //   }
-  //
-  //
-  //
-  // }
+
+
+  }
 
 
 
