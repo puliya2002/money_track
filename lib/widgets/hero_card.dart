@@ -62,7 +62,7 @@ final Map data;
         ],
       ),
       child: Padding(
-        padding: const EdgeInsets.all(15.0),
+        padding: const EdgeInsets.all(18.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -172,6 +172,8 @@ final Map data;
                   ],
                 ),
                 Row(
+
+
                   children: [
                     Stack(
                       alignment: Alignment.center,
@@ -197,7 +199,7 @@ final Map data;
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "Icome",
+                          "Incomes",
                           style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.w500,
