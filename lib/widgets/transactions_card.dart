@@ -1,124 +1,59 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:money_track/widgets/icons_list.dart';
+import 'package:money_track/widgets/transaction_card.dart';
 
 class TransactionsCard extends StatelessWidget {
   TransactionsCard({super.key});
 
-  var appIcons = AppIcons();
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: RecentTransactionList(),
+    );
+  }
+}
+
+class RecentTransactionList extends StatelessWidget {
+  RecentTransactionList({
+    super.key,
+  });
+
+  final userId = FirebaseAuth.instance.currentUser!.uid;
 
   @override
   Widget build(BuildContext context) {
-    return  Expanded(
-      child: ListView.builder(
+    return StreamBuilder<QuerySnapshot>(
+        stream: FirebaseFirestore.instance
+            .collection('users')
+            .doc(userId)
+            .collection("transactions")
+            .orderBy('timestamp', descending: true)
+            .limit(30)
+            .snapshots(),
+        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+          if (snapshot.hasError) {
+            return Text('Something went wrong');
+          } else if (snapshot.connectionState == ConnectionState.waiting) {
+            return Text("Loading");
+          } else if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
+            return const Center(
+              child: Text("No transactions found"),
+            );
+          }
 
-        itemCount: 20,
-        itemBuilder: (context, int i) {
-          return Padding(
-            padding: const EdgeInsets.only(bottom: 18),
-            child: Container(
-              width: 30,
-              height: 75,
-              decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.primaryContainer,
-                borderRadius: BorderRadius.circular(18),
-                boxShadow: [
-                  BoxShadow(
-                      blurRadius: 16,
-                      color: Theme.of(context).colorScheme.shadow.withOpacity(0.1),
-
-                      offset: Offset(2, 4))
-                ],
-
-              ),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Row(
-                      children: [
-                        Stack(
-                          alignment: Alignment.center,
-                          children: [
-                            Container(
-                              width: 47,
-                              height: 47,
-
-                              decoration: BoxDecoration(
-                                color: Colors.green.withOpacity(0.5),
-                                shape: BoxShape.circle,
-                              ),
-                            ),
-                            FaIcon(appIcons.getExpenseCategoryIcons('Grocery'), color: Theme.of(context).colorScheme.onBackground, size: 17,),
-
-                          ],
-                        ),
-                        const SizedBox(
-                          width: 12,
-                        ),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Name',
-                              style: TextStyle(
-                                  color: Theme.of(context).colorScheme.onBackground.withOpacity(0.9),
-
-                                  fontWeight: FontWeight.w800,
-                                  fontSize: 16),
-                            ),
-                            Text(
-                              'Date',
-                              style: TextStyle(
-                                  color: Theme.of(context).colorScheme.onBackground.withOpacity(0.6),
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 13),
-                            ),
-                          ],
-                        ),
-                      ],
-
-                    ),
-                    Row(
-                      children: [
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-
-                            Text(
-                              'LKR 1500',
-                              style: TextStyle(
-                                  // color: Theme.of(context).colorScheme.onBackground.withOpacity(0.9),
-                                  color: Colors.green,
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 15),
-                            ),
-
-                            Text(
-                              'Date',
-                              style: TextStyle(
-                                  color: Theme.of(context).colorScheme.onBackground.withOpacity(0.6),
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 13),
-                            ),
-                          ],
-
-
-                        ),
-
-                      ],
-
-                    )
-                  ],
-                ),
-              ),
-            ),
+          var data = snapshot.data!.docs;
+          return ListView.builder(
+            shrinkWrap: true,
+            // physics: NeverScrollableScrollPhysics(),
+            itemCount: data.length,
+            itemBuilder: (context, index) {
+              var cardData = data[index];
+              return TransactionCard(data: cardData);
+            },
           );
-        },
-      ),
-    );
+        });
   }
 }

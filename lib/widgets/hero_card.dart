@@ -114,9 +114,9 @@ final Map data;
                         Container(
                           width: 40,
                           height: 40,
-                          decoration: const BoxDecoration(
+                          decoration: BoxDecoration(
                             shape: BoxShape.circle,
-                            color: Color.fromARGB(226, 255, 255, 255),
+                            color: Colors.red.shade50,
                           ),
                         ),
                         const Icon(
@@ -181,15 +181,16 @@ final Map data;
                         Container(
                           width: 40,
                           height: 40,
-                          decoration: const BoxDecoration(
+                          decoration:BoxDecoration(
                             shape: BoxShape.circle,
-                            color: Color.fromARGB(226, 255, 255, 255),
+                            color: Colors.green.shade50,
                           ),
                         ),
                         const Icon(
                           CupertinoIcons.arrow_up,
                           color: Colors.green,
                         ),
+
                       ],
                     ),
                     const SizedBox(
