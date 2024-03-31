@@ -20,7 +20,7 @@ class TransactionsCard extends StatelessWidget {
               width: 30,
               height: 75,
               decoration: BoxDecoration(
-                color: Theme.of(co ntext).colorScheme.primaryContainer,
+                color: Theme.of(context).colorScheme.primaryContainer,
                 borderRadius: BorderRadius.circular(18),
                 boxShadow: [
                   BoxShadow(
