@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 
 
 import '../widgets/add_transaction_form.dart';
+import '../components/appbarr.dart';
 import 'main_screen.dart';
 
 
@@ -47,18 +48,10 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(40.0),
-          child: AppBar(
-            backgroundColor: Theme.of(context).colorScheme.background,
-            elevation: 0,
+            preferredSize: Size.fromHeight(40.0),
+            child: AppBarr(),),
 
-            title: Image.asset("assets/Logo.png", height: 45,),
-            centerTitle: true,
-
-          ),
-        ),
-
-        drawer: MyDrawer(),
+            drawer: MyDrawer(),
 
 
         bottomNavigationBar: ClipRRect(

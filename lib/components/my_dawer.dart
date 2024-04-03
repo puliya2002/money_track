@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:money_track/pages/main_screen.dart';
+import 'package:money_track/pages/profile.dart';
 import 'package:provider/provider.dart';
 
 import '../theme/theme_provider.dart';
@@ -132,6 +133,19 @@ class _MyDrawerState extends State<MyDrawer> {
                               );
                             },
                           );
+                        },
+                      ),
+
+                      ListTile(
+                        leading: Icon(Icons.face),
+                        title: Text("Profile"),
+                        onTap: (){
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => Profile()),
+                          );
+
+
                         },
                       ),
 
