@@ -12,6 +12,7 @@ class Profile extends StatelessWidget {
         preferredSize: Size.fromHeight(40.0),
         child: AppBarr(),),
       body: Padding(
+        minu
         padding: const EdgeInsets.only(top: 30),
         child: Column(
           children: [
