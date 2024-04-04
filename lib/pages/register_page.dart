@@ -72,7 +72,8 @@ class _RegisterPageState extends State<RegisterPage> {
             'email': _emailController.text.trim(),
             'remainingAmount': 0,
             'totalCredit': 0,
-            'totalDebit': 0
+            'totalDebit': 0,
+            'joinedDate': DateTime.now(),
           });
 
           // Dismiss loading indicator
@@ -344,7 +345,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                     keyboardType: TextInputType.emailAddress,
                                     decoration: InputDecoration(
                                       border: InputBorder.none,
-                                      hintText: 'First Name',
+                                      hintText: 'Name',
                                     ),
                                   ),
                                 )
