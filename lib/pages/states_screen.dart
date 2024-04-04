@@ -5,6 +5,7 @@ import 'package:intl/intl.dart';
 
 import '../widgets/tab_bar_view.dart';
 import '../widgets/time_line_category.dart';
+import '../widgets/time_line_category_income.dart';
 import '../widgets/time_line_month.dart';
 
 class StatScreen extends StatefulWidget {
@@ -38,7 +39,7 @@ class _StatScreenState extends State<StatScreen> {
 
     return SafeArea(
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 22.0, vertical: 10),
+        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         child: Column(
           children: [
             TimeLineMonth(
@@ -51,17 +52,32 @@ class _StatScreenState extends State<StatScreen> {
               }
             }
             ),
-            TimeLineCategory(
-              onChanged: (String? value) {
-                if(value != null){
-                  setState(() {
-                    category = value;
-                  });
-
-                }
-              },
-            ),
-            TypeTabBar(category: category, monthYear: monthYear,),
+            // TimeLineCategory(
+            //   onChanged: (String? value) {
+            //     if(value != null){
+            //       setState(() {
+            //         category = value;
+            //       });
+            //
+            //     }
+            //
+            //
+            //   },
+            // ),
+            //
+            // TimeLineCategoryIncome(
+            //   onChanged: (String? value) {
+            //     if(value != null){
+            //       setState(() {
+            //         category = value;
+            //       });
+            //
+            //     }
+            //
+            //
+            //   },
+            // ),
+            TypeTabBar( monthYear: monthYear, ),
           ],
         )
 

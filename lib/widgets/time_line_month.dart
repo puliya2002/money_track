@@ -20,7 +20,7 @@ final scrollCounter = ScrollController();
 void initState() {
   super.initState();
   DateTime now = DateTime.now();
-  for (int i = -150; i <= 0; i++) {
+  for (int i = -45; i <= 0; i++) {
     months.add(
         DateFormat('MMM y').format(DateTime(now.year, now.month + i, 1)));
   }
@@ -34,7 +34,7 @@ void initState() {
 scrollToSelectedMonth(){
   final selectedMonthIndex = months.indexOf(currentMonth);
   if(selectedMonthIndex != -1){
-    final scrollOffset = (selectedMonthIndex * 100.0) -170;
+    final scrollOffset = (selectedMonthIndex * 100.0)  ;
     scrollCounter.animateTo(scrollOffset,
         duration: Duration(milliseconds: 500), curve: Curves.ease);
 
@@ -64,7 +64,7 @@ Widget build(BuildContext context) {
                   decoration: BoxDecoration(
                     color: currentMonth == months[index]
                         ? Colors.blue
-                        : Theme.of(context).colorScheme.secondary,
+                        : Theme.of(context).colorScheme.secondary.withOpacity(0.8),
 
                     borderRadius: BorderRadius.all(Radius.circular(80)),
                   ),
