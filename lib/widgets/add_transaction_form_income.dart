@@ -3,21 +3,22 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:money_track/widgets/category_dropdown_income.dart';
 import 'package:uuid/uuid.dart';
 
 import '../utils/app_validator.dart';
 import 'category_dropdown.dart';
 
-class AddTransactionForm extends StatefulWidget {
-  const AddTransactionForm({super.key});
+class AddTransactionFormIncome extends StatefulWidget {
+  const AddTransactionFormIncome({super.key});
 
   @override
-  State<AddTransactionForm> createState() => _AddTransactionFormState();
+  State<AddTransactionFormIncome> createState() => _AddTransactionFormIncomeState();
 }
 
-class _AddTransactionFormState extends State<AddTransactionForm> {
-  var type = "Debit"; // Changed initial value to 'Credit'
-  var category = "Others";
+class _AddTransactionFormIncomeState extends State<AddTransactionFormIncome> {
+  var type = "Credit"; // Changed initial value to 'Credit'
+  var category = "Salary";
   var amountEditController = TextEditingController();
   var titleEditController = TextEditingController();
   var uid = Uuid();
@@ -118,7 +119,7 @@ class _AddTransactionFormState extends State<AddTransactionForm> {
               keyboardType: TextInputType.number,
               decoration: InputDecoration(labelText: 'Amount'),
             ),
-            CtegoryDropDown(
+            CtegoryDropDownIncome(
               cattype: category,
               onChanged: (String? value) {
                 if (value != null) {
@@ -129,16 +130,16 @@ class _AddTransactionFormState extends State<AddTransactionForm> {
               },
             ),
             // DropdownButtonFormField(
-            //   value: 'Debit', // Changed initial value to 'Credit'
+            //   value: 'Credit', // Changed initial value to 'Credit'
             //   items: [
-            //     // DropdownMenuItem(
-            //     //   child: Text('Income'),
-            //     //   value: 'Credit',
-            //     // ),
             //     DropdownMenuItem(
-            //       child: Text('Expense'),
-            //       value: 'Debit',
+            //       child: Text('Income'),
+            //       value: 'Credit',
             //     ),
+            //     // DropdownMenuItem(
+            //     //   child: Text('Expense'),
+            //     //   value: 'Debit',
+            //     // ),
             //   ],
             //   onChanged: (value) {
             //     if (value != null) {
@@ -153,9 +154,10 @@ class _AddTransactionFormState extends State<AddTransactionForm> {
             ),
             ElevatedButton(
                 style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all<Color>(Colors.red),
+                  backgroundColor: MaterialStateProperty.all<Color>(Colors.green),
                   foregroundColor: MaterialStateProperty.all<Color>(Colors.white),// Change this color to the desired background color.
                 ),
+
                 onPressed: () {
                   if (isLoader == false) {
                     _submitForm();
@@ -163,7 +165,7 @@ class _AddTransactionFormState extends State<AddTransactionForm> {
                 },
                 child: isLoader
                     ? Center(child: CircularProgressIndicator())
-                    : Text('Add Expense', style: TextStyle(fontSize: 15)))
+                    : Text('Add Income', style: TextStyle(fontSize: 15),),)
           ],
         ),
       ),

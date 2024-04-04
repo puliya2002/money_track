@@ -20,7 +20,7 @@ final scrollCounter = ScrollController();
 void initState() {
   super.initState();
   DateTime now = DateTime.now();
-  for (int i = -18; i <= 0; i++) {
+  for (int i = -150; i <= 0; i++) {
     months.add(
         DateFormat('MMM y').format(DateTime(now.year, now.month + i, 1)));
   }

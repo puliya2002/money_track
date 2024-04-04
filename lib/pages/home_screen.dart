@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 
 import '../widgets/add_transaction_form.dart';
 import '../components/appbarr.dart';
+import '../widgets/add_transaction_form_income.dart';
 import 'main_screen.dart';
 
 
@@ -24,12 +25,26 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   //last added change
+
   _dialogBuilder(BuildContext context){
     return showDialog(context: context, builder: (context){
       return AlertDialog(
         content: AddTransactionForm(),
       );
-    });
+    }
+
+    );
+  }
+
+  _dialogBuilder2(BuildContext context) {
+    return showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          content: AddTransactionFormIncome(),
+        );
+      },
+    );
   }
 
 
@@ -132,16 +147,19 @@ class _HomeScreenState extends State<HomeScreen> {
           padding: const EdgeInsets.symmetric(horizontal: 65),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
             children: [
               Transform.scale(
                 scale: 1.8,
                 child: FloatingActionButton(
 
 
+
                   mini: false,
                   onPressed: (() {
                     _dialogBuilder(context);
                   }),
+
                   elevation: 0.0,
                   shape: const CircleBorder(),
                   child: Container(
@@ -177,7 +195,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: FloatingActionButton(
                   mini: false,
                   elevation: 0.0,
-                  onPressed: () {},
+                  onPressed: (() {
+                    _dialogBuilder2(context);
+                  }),
                   shape: const CircleBorder(),
                   child: Container(
                     width: 180,
