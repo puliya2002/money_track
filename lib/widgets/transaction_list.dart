@@ -1,38 +1,37 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:money_track/data/icons_list.dart';
 import 'package:money_track/widgets/transaction_card.dart';
 
-class TransactionsCard extends StatelessWidget {
-  TransactionsCard({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Expanded(
-      child: RecentTransactionList(),
-    );
-  }
-}
-
-class RecentTransactionList extends StatelessWidget {
-  RecentTransactionList({
-    super.key,
-  });
+class TransactionList extends StatelessWidget {
+  TransactionList(
+      {super.key, required this.category, required this.type, required this.monthYear});
 
   final userId = FirebaseAuth.instance.currentUser!.uid;
 
+  final String category;
+  final String type;
+  final String monthYear;
+
+
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<QuerySnapshot>(
-        stream: FirebaseFirestore.instance
-            .collection('users')
-            .doc(userId)
-            .collection("transactions")
-            .orderBy('timestamp', descending: true)
-            .limit(30)
-            .snapshots(),
+    Query query = FirebaseFirestore.instance
+        .collection('users')
+        .doc(userId)
+        .collection("transactions")
+        .orderBy('timestamp', descending: false)
+        .where('type', isEqualTo: type)
+        .where('monthyear', isEqualTo: monthYear);
+
+
+    if (category != 'All') {
+      query = query.where('category', isEqualTo: category);
+    }
+
+
+    return FutureBuilder<QuerySnapshot>(
+        future: query.limit(150).get(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.hasError) {
             return Text('Something went wrong');
@@ -56,4 +55,5 @@ class RecentTransactionList extends StatelessWidget {
           );
         });
   }
+
 }

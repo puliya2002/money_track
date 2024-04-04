@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
-import 'package:money_track/widgets/icons_list.dart';
+import 'package:money_track/data/icons_list.dart';
 
 class TimeLineCategory extends StatefulWidget {
   TimeLineCategory({super.key, required this.onChanged});
@@ -14,16 +15,25 @@ class TimeLineCategory extends StatefulWidget {
 class _TimeLineCategoryState extends State<TimeLineCategory> {
 
 String currentCategory = "";
+List<Map<String, dynamic>> categorylist = [];
 
 final scrollCounter = ScrollController();
 var appIcons = AppIcons();
 
 
-
+var addCat =     {
+  "name" : "All",
+  "icon" : Icons.all_inbox,
+};
 
 @override
 void initState() {
   super.initState();
+  setState(() {
+    categorylist = appIcons.homeExpensesCategories;
+    categorylist.insert(0, addCat);
+  });
+
 
 
 }
@@ -38,15 +48,18 @@ void initState() {
 //   }
 // }
 
+
+@override
 Widget build(BuildContext context) {
+
   return Container(
         height: 45,
         child: ListView.builder(
             controller: scrollCounter,
-            itemCount: appIcons.homeExpensesCategories.length,
+            itemCount: categorylist.length,
             scrollDirection: Axis.horizontal,
             itemBuilder: (contex, index) {
-              var data = appIcons.homeExpensesCategories[index];
+              var data = categorylist[index];
               return GestureDetector(
                 onTap: () {
                   setState(() {
