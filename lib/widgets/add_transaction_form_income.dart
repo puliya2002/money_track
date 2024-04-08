@@ -37,7 +37,7 @@ class _AddTransactionFormIncomeState extends State<AddTransactionFormIncome> {
         isLoader = false;
       });
       final user = FirebaseAuth.instance.currentUser;
-      int timestamp = DateTime.now().microsecondsSinceEpoch;
+
       var amount = int.parse(amountEditController.text);
       DateTime date = DateTime.now();
 
@@ -68,7 +68,7 @@ class _AddTransactionFormIncomeState extends State<AddTransactionFormIncome> {
         "remainingAmount": remainingAmount,
         "totalCredit": totalCredit,
         "totalDebit": totalDebit,
-        "updatedAt": timestamp,
+        "updatedAt": DateTime.now(),
       });
 
       var data = {
@@ -76,7 +76,7 @@ class _AddTransactionFormIncomeState extends State<AddTransactionFormIncome> {
         "title": titleEditController.text,
         "amount": amount,
         "type": type,
-        "timestamp": timestamp,
+        "timestamp": DateTime.now(),
         "totalCredit": totalCredit,
         "totalDebit": totalDebit,
         "remainingAmount": remainingAmount,

@@ -1,13 +1,19 @@
 import 'dart:io';
 
-import 'package:money_track/pages/register_page.dart';
+import 'package:money_track/screens/foget_password_screen.dart';
+import 'package:money_track/screens/home_screen.dart';
+import 'package:money_track/screens/main_screen.dart';
+import 'package:money_track/screens/profile_screen.dart';
+import 'package:money_track/screens/register_screen.dart';
+import 'package:money_track/screens/states_screen.dart';
+import 'package:money_track/screens/test_screen.dart';
 import 'package:money_track/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:money_track/provider/theme_provider.dart';
 import 'package:provider/provider.dart';
 
-import 'pages/login_page.dart';
+import 'screens/login_screen.dart';
 import 'auth/main_page.dart';
 import 'provider/currency_provider.dart';
 
@@ -46,14 +52,26 @@ class MyApp extends StatelessWidget {
 
       debugShowCheckedModeBanner: false,
       theme: Provider.of<ThemeProvider>(context).getTheme(),
-      // theme: ThemeData(
-      //   colorScheme: const ColorScheme.light(
-      //     background: Color(0xFFf3f6f9),
-      //     onBackground: Color(0xFF363637),
-      //     primary: Color(0xFF2291fd),
-      //     secondary: Color(0xFF6dd2ff),
-      //   ),
-      // ),
+
+
+      initialRoute: '/test',
+      routes: {
+        '/register': (context) => RegisterScreen(showLoginPage: () {  },),
+        '/login': (context) => LoginScreen(showRegisterPage: () {  },),
+        '/forgetPassword': (context) => ForgetPasswordScreen(),
+        '/home': (context) => HomeScreen(),
+        '/mainScreen': (context) => MainScreen(),
+        '/stateScreen': (context) => StatScreen(),
+        '/profileScreen': (context) => ProfileScreen(),
+        '/test': (context) => Test(),
+
+
+
+
+
+
+      },
+
       home: const MainPage(),
     );
   }

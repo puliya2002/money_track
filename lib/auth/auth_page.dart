@@ -1,5 +1,5 @@
-import 'package:money_track/pages/login_page.dart';
-import 'package:money_track/pages/register_page.dart';
+import 'package:money_track/screens/login_screen.dart';
+import 'package:money_track/screens/register_screen.dart';
 import 'package:flutter/material.dart';
 
 class AuthPage extends StatefulWidget {
@@ -21,9 +21,9 @@ class _AuthPageState extends State<AuthPage> {
   @override
   Widget build(BuildContext context) {
     if (showLoginPage){
-      return LoginPage(showRegisterPage: toggleScreens);
+      return LoginScreen(showRegisterPage: toggleScreens);
     }else{
-      return RegisterPage(showLoginPage: toggleScreens);
+      return RegisterScreen(showLoginPage: toggleScreens);
     }
   }
 }

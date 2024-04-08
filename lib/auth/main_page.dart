@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:money_track/pages/home_screen.dart';
-import 'package:money_track/pages/login_page.dart';
+import 'package:money_track/screens/home_screen.dart';
+import 'package:money_track/screens/login_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 

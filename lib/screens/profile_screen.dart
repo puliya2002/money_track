@@ -4,16 +4,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-import '../components/appbarr.dart';
+import '../components/my_appbar.dart';
 
-class Profile extends StatefulWidget {
-  const Profile({super.key});
+class ProfileScreen extends StatefulWidget {
+  const ProfileScreen({super.key});
 
   @override
-  State<Profile> createState() => _ProfileState();
+  State<ProfileScreen> createState() => _ProfileScreenState();
 }
 
-class _ProfileState extends State<Profile> {
+class _ProfileScreenState extends State<ProfileScreen> {
   late String userId;
   late Stream<DocumentSnapshot> userStream;
 
@@ -35,7 +35,7 @@ class _ProfileState extends State<Profile> {
     return  Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(40.0),
-        child: AppBarr(),),
+        child: MyAppBar(),),
       body: Padding(
         padding: const EdgeInsets.only(top: 30),
         child: StreamBuilder(

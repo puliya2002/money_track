@@ -2,8 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:money_track/pages/main_screen.dart';
-import 'package:money_track/pages/profile.dart';
+import 'package:money_track/screens/main_screen.dart';
+import 'package:money_track/screens/profile_screen.dart';
 import 'package:provider/provider.dart';
 
 import '../provider/currency_provider.dart';
@@ -190,7 +190,7 @@ class _MyDrawerState extends State<MyDrawer> {
                         onTap: (){
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => Profile()),
+                            MaterialPageRoute(builder: (context) => ProfileScreen()),
                           );
 
 

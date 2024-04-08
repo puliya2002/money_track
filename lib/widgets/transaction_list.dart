@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:money_track/widgets/transaction_card.dart';
 
+import '../model/transaction_model.dart';
 
 class TransactionList extends StatelessWidget {
   TransactionList({
@@ -46,13 +46,32 @@ class TransactionList extends StatelessWidget {
         }
 
         var data = snapshot.data!.docs;
-        return ListView.builder(
-          shrinkWrap: true,
-          itemCount: data.length,
-          itemBuilder: (context, index) {
-            var cardData = data[index];
-            return TransactionCard(data: cardData);
-          },
+        double totalAmount = 0.0; // Initialize total amount variable
+        for (var transaction in data) {
+          // Calculate total amount
+          totalAmount += transaction['type'] == 'Credit'
+              ? transaction['amount']
+              : -transaction['amount'];
+        }
+        return Column(
+          children: [
+            ListView.builder(
+              shrinkWrap: true,
+              itemCount: data.length,
+              itemBuilder: (context, index) {
+                var cardData = data[index];
+                return TransactionModel(data: cardData);
+              },
+            ),
+            SizedBox(height: 10),
+            Text(
+              'Total: ${totalAmount.toStringAsFixed(2)}', // Display total amount
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 16,
+              ),
+            ),
+          ],
         );
       },
     );

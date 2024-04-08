@@ -1,24 +1,24 @@
 import 'dart:math';
 
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:money_track/pages/register_page.dart';
+import 'package:money_track/screens/register_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-import 'foget_password.dart';
+import 'foget_password_screen.dart';
 
 
 
-class LoginPage extends StatefulWidget {
+class LoginScreen extends StatefulWidget {
   final VoidCallback showRegisterPage;
-  const LoginPage({super.key, required this.showRegisterPage});
+  const LoginScreen({super.key, required this.showRegisterPage});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<LoginScreen> createState() => _LoginScreenState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _LoginScreenState extends State<LoginScreen> {
   //Text Controller
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
@@ -246,7 +246,7 @@ class _LoginPageState extends State<LoginPage> {
                                 onTap: () {
                                   Navigator.push(context,
                                       MaterialPageRoute(builder: (context) {
-                                        return ForgetPasswordPage();
+                                        return ForgetPasswordScreen();
                                       }));
                                 },
                                 child: Text(

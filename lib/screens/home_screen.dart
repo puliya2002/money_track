@@ -2,14 +2,14 @@ import 'dart:math';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:money_track/components/my_dawer.dart';
-import 'package:money_track/pages/states_screen.dart';
+import 'package:money_track/screens/states_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 
 
 import '../widgets/add_transaction_form.dart';
-import '../components/appbarr.dart';
+import '../components/my_appbar.dart';
 import '../widgets/add_transaction_form_income.dart';
 import 'main_screen.dart';
 
@@ -64,7 +64,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
         appBar: PreferredSize(
             preferredSize: Size.fromHeight(40.0),
-            child: AppBarr(),),
+            child: MyAppBar(),),
 
             drawer: MyDrawer(),
 

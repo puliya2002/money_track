@@ -14,7 +14,7 @@ import 'package:provider/provider.dart';
 import '../service/category_service.dart';
 import '../provider/currency_provider.dart';
 import '../widgets/hero_card.dart';
-import '../widgets/transactions_card.dart';
+import '../widgets/recent_transactions_card.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -125,7 +125,7 @@ class _MainScreenState extends State<MainScreen> {
                 Row(
                   children: [
                     Text(
-                      "Transactions",
+                      "Recent Transactions",
                       style: TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.w600,
@@ -136,64 +136,74 @@ class _MainScreenState extends State<MainScreen> {
                 ),
                 Row(
                   children: [
-                    GestureDetector(
-                      onTap: () {},
-                      child: Stack(
-                        alignment: Alignment.center,
-                        children: [
-                          Container(
-                            width: 65,
-                            height: 23,
-                            decoration: BoxDecoration(
-                                color: Theme.of(context)
-                                    .colorScheme
-                                    .primaryContainer,
-                                borderRadius: BorderRadius.circular(100)),
-                          ),
-                          Text(
-                            "Income",
-                            style: TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w600,
+                    Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        Container(
+                          width: 65,
+                          height: 21,
+                          decoration: BoxDecoration(
                               color: Theme.of(context)
                                   .colorScheme
-                                  .onBackground
-                                  .withOpacity(0.6),
-                            ),
+                                  .primaryContainer,
+                              borderRadius: BorderRadius.circular(100)),
+                        ),
+                        Text(
+                          "Income",
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w600,
+                            color: Theme.of(context)
+                                .colorScheme
+                                .onBackground
+                                .withOpacity(0.6),
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
+                    // const SizedBox(
+                    //   width: 5,
+                    // ),
+                    // Text(
+                    //   "&",
+                    //   style: TextStyle(
+                    //     fontSize: 14,
+                    //     fontWeight: FontWeight.w600,
+                    //     color: Theme.of(context)
+                    //         .colorScheme
+                    //         .onBackground
+                    //         .withOpacity(0.3),
+                    //   ),
+                    //
+                    // ),
                     const SizedBox(
                       width: 5,
                     ),
-                    GestureDetector(
-                      onTap: () {},
-                      child: Stack(
-                        alignment: Alignment.center,
-                        children: [
-                          Container(
-                            width: 79,
-                            height: 23,
-                            decoration: BoxDecoration(
-                                color: Theme.of(context)
-                                    .colorScheme
-                                    .primaryContainer,
-                                borderRadius: BorderRadius.circular(100)),
-                          ),
-                          Text(
-                            "Expenses",
-                            style: TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w600,
+                    Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        Container(
+                          width: 79,
+                          height: 21,
+                          decoration: BoxDecoration(
                               color: Theme.of(context)
                                   .colorScheme
-                                  .onBackground
-                                  .withOpacity(0.9),
-                            ),
+                                  .primaryContainer,
+                              borderRadius: BorderRadius.circular(100)),
+                        ),
+                        Text(
+                          "Expenses",
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w600,
+                            color: Theme.of(context)
+                                .colorScheme
+                                .onBackground
+                                .withOpacity(0.6),
                           ),
-                        ],
-                      ),
+
+                        ),
+                      ],
                     ),
                   ],
                 )

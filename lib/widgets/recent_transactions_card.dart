@@ -3,7 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:money_track/data/icons_list.dart';
-import 'package:money_track/widgets/transaction_card.dart';
+import 'package:money_track/model/transaction_model.dart';
 
 class TransactionsCard extends StatelessWidget {
   TransactionsCard({super.key});
@@ -51,7 +51,7 @@ class RecentTransactionList extends StatelessWidget {
             itemCount: data.length,
             itemBuilder: (context, index) {
               var cardData = data[index];
-              return TransactionCard(data: cardData);
+              return TransactionModel(data: cardData);
             },
           );
         });

@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -7,8 +8,8 @@ import 'package:provider/provider.dart';
 import '../data/icons_list.dart';
 import '../provider/currency_provider.dart';
 
-class TransactionCard extends StatelessWidget {
-  TransactionCard({
+class TransactionModel extends StatelessWidget {
+  TransactionModel({
     super.key,
     required this.data,
   });
@@ -19,8 +20,13 @@ class TransactionCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String currency = Provider.of<CurrencyProvider>(context).selectedCurrency;
-    DateTime date = DateTime.fromMillisecondsSinceEpoch(data['timestamp']);
-    String formatedDate = DateFormat('d MMM hh:mm a').format(date);
+
+    var addedDate = (data['timestamp'] as Timestamp).toDate();
+    String formatDateTime(DateTime dateTime) {
+      return DateFormat.yMMMMd().add_jm().format(dateTime);
+    }
+    // String formatedDate = DateFormat('d MMM hh:mm a').format(date);
+
     return Padding(
       padding: const EdgeInsets.only(bottom: 18),
       child: Container(
@@ -83,7 +89,7 @@ class TransactionCard extends StatelessWidget {
                             fontSize: 17),
                       ),
                       Text(
-                        formatedDate,
+                        formatDateTime(addedDate),
                         style: TextStyle(
                             color: Theme.of(context)
                                 .colorScheme
