@@ -4,11 +4,12 @@ import 'package:money_track/pages/register_page.dart';
 import 'package:money_track/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:money_track/theme/theme_provider.dart';
+import 'package:money_track/provider/theme_provider.dart';
 import 'package:provider/provider.dart';
 
 import 'pages/login_page.dart';
 import 'auth/main_page.dart';
+import 'provider/currency_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -23,15 +24,21 @@ void main() async {
     ),
   )
       : await Firebase.initializeApp();
-  runApp(ChangeNotifierProvider(
-    create: (context) => ThemeProvider(),
-    child: const MyApp(),),);
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => ThemeProvider()),
+        ChangeNotifierProvider(create: (_) => CurrencyProvider()), // Add CurrencyProvider here
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
+
+
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
-
 
   @override
   Widget build(BuildContext context) {

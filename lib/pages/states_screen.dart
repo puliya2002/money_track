@@ -52,31 +52,7 @@ class _StatScreenState extends State<StatScreen> {
               }
             }
             ),
-            // TimeLineCategory(
-            //   onChanged: (String? value) {
-            //     if(value != null){
-            //       setState(() {
-            //         category = value;
-            //       });
-            //
-            //     }
-            //
-            //
-            //   },
-            // ),
-            //
-            // TimeLineCategoryIncome(
-            //   onChanged: (String? value) {
-            //     if(value != null){
-            //       setState(() {
-            //         category = value;
-            //       });
-            //
-            //     }
-            //
-            //
-            //   },
-            // ),
+
             TypeTabBar( monthYear: monthYear, ),
           ],
         )

@@ -9,13 +9,16 @@ import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:money_track/model/category_model.dart';
+import 'package:provider/provider.dart';
 
 import '../service/category_service.dart';
+import '../provider/currency_provider.dart';
 import '../widgets/hero_card.dart';
 import '../widgets/transactions_card.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
+
 
   @override
   State<MainScreen> createState() => _MainScreenState();
@@ -24,59 +27,13 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   final user = FirebaseAuth.instance.currentUser!;
 
-  // //////////////////////////////////////////latest start
-  //
-  // List<GetCategories> categoryItems = [];
-  //
-  // @override
-  // void initState() {
-  //   fetchRecords();
-  //   super.initState();
-  // }
-  //
-  // fetchRecords() async {
-  //   try {
-  //     var records =
-  //         await FirebaseFirestore.instance.collection('category').get();
-  //     mapRecords(records);
-  //   } catch (e) {
-  //     print('Error fetching records: $e');
-  //   }
-  // }
-  //
-  // mapRecords(QuerySnapshot<Map<String, dynamic>> records) {
-  //   var _list = records.docs
-  //       .map((category) => GetCategories(
-  //             id: category.id,
-  //             name: category['name'],
-  //             color: category['color'],
-  //             icon: category['icon'],
-  //           ))
-  //       .toList();
-  //
-  //   setState(() {
-  //     categoryItems = _list;
-  //   });
-  // }
-  // //////////////////////////////////////////////////////////latest end
 
-  // //document IDs
-  // List<String> docIDs = [];
-  //
-  // //get docIDs
-  // Future getDocId() async {
-  //   await FirebaseFirestore.instance
-  //       .collection('category')
-  //       .get()
-  //       .then((snapshot) => snapshot.docs.forEach((document) {
-  //             print(document.reference);
-  //             docIDs.add(document.reference.id);
-  //           }));
-  // }
+
 
   @override
 
   Widget build(BuildContext context) {
+    String currency = Provider.of<CurrencyProvider>(context).selectedCurrency;
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 22.0, vertical: 10),
@@ -157,7 +114,7 @@ class _MainScreenState extends State<MainScreen> {
             // ),
             Padding(
               padding: const EdgeInsets.only(top: 8),
-              child: HeroCard(UserId: user.uid,)
+              child: HeroCard(UserId: user.uid, currency: currency,)
             ),
             const SizedBox(
               height: 20,

@@ -5,8 +5,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class HeroCard extends StatelessWidget {
-  HeroCard({super.key, required this.UserId});
+  HeroCard({super.key, required this.UserId, required this.currency,});
   final String UserId;
+  final String currency;
+
 
 
   @override
@@ -26,7 +28,7 @@ class HeroCard extends StatelessWidget {
         var data = snapshot.data!.data() as Map<String, dynamic>;
 
         return Cards(
-          data: data,
+          data: data, currency: currency,
         );
       },
     );
@@ -35,7 +37,8 @@ class HeroCard extends StatelessWidget {
 
 
 class Cards extends StatelessWidget {
-  const Cards({super.key, required this.data});
+  const Cards({super.key, required this.data, required this.currency});
+  final String currency;
 final Map data;
   @override
   Widget build(BuildContext context) {
@@ -84,7 +87,7 @@ final Map data;
                           height: 15,
                         ),
                         Text(
-                          "LKR ",
+                          currency ,
                           style: TextStyle(
                               color: Colors.white,
                               fontSize: 16,
@@ -148,10 +151,10 @@ final Map data;
                                   height: 3,
                                 ),
                                 Text(
-                                  "LKR ",
+                                  currency,
                                   style: TextStyle(
                                       color: Colors.white,
-                                      fontSize: 10,
+                                      fontSize: 11,
                                       fontWeight: FontWeight.w600),
                                 ),
                               ],
@@ -215,10 +218,10 @@ final Map data;
                                   height: 3,
                                 ),
                                 Text(
-                                  "LKR ",
+                                  currency,
                                   style: TextStyle(
                                       color: Colors.white,
-                                      fontSize: 10,
+                                      fontSize: 11,
                                       fontWeight: FontWeight.w600),
                                 ),
                               ],

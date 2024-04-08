@@ -6,7 +6,8 @@ import 'package:money_track/pages/main_screen.dart';
 import 'package:money_track/pages/profile.dart';
 import 'package:provider/provider.dart';
 
-import '../theme/theme_provider.dart';
+import '../provider/currency_provider.dart';
+import '../provider/theme_provider.dart';
 
 class MyDrawer extends StatefulWidget {
   const MyDrawer({super.key});
@@ -128,6 +129,53 @@ class _MyDrawerState extends State<MyDrawer> {
                                       },
                                       selected: Provider.of<ThemeProvider>(context).getCurrentTheme() == ThemeType.System,
                                     ),
+                                  ],
+                                ),
+                              );
+                            },
+                          );
+                        },
+                      ),
+
+                      ListTile(
+                        leading: Icon(Icons.monetization_on,),
+                        title: Text("Currency"),
+                        onTap: () {
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                title: const Text("Select Currency"),
+                                content: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    ListTile(
+                                      title: const Text("LKR"),
+                                      onTap: () {
+                                        Provider.of<CurrencyProvider>(context, listen: false).setCurrency("LKR ");
+                                        Navigator.pop(context);
+                                      },
+                                      selected: Provider.of<CurrencyProvider>(context).selectedCurrency == "LKR ",
+                                    ),
+                                    ListTile(
+                                      title: const Text("USD"),
+                                      onTap: () {
+                                        Provider.of<CurrencyProvider>(context, listen: false).setCurrency("USD ");
+                                        Navigator.pop(context);
+                                      },
+                                      selected: Provider.of<CurrencyProvider>(context).selectedCurrency == "USD ",
+                                    ),
+
+                                    ListTile(
+                                      title: const Text("GBP"),
+                                      onTap: () {
+                                        Provider.of<CurrencyProvider>(context, listen: false).setCurrency("GBP ");
+                                        Navigator.pop(context);
+                                      },
+                                      selected: Provider.of<CurrencyProvider>(context).selectedCurrency == "GBP ",
+                                    ),
+
+
                                   ],
                                 ),
                               );

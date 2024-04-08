@@ -2,8 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
 import '../data/icons_list.dart';
+import '../provider/currency_provider.dart';
 
 class TransactionCard extends StatelessWidget {
   TransactionCard({
@@ -16,6 +18,7 @@ class TransactionCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String currency = Provider.of<CurrencyProvider>(context).selectedCurrency;
     DateTime date = DateTime.fromMillisecondsSinceEpoch(data['timestamp']);
     String formatedDate = DateFormat('d MMM hh:mm a').format(date);
     return Padding(
@@ -100,7 +103,7 @@ class TransactionCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       Text(
-                        "${data['type'] == 'Credit' ? '+' : '-'} LKR ${data['amount']}",
+                        "${data['type'] == 'Credit' ? '+' : '-'} $currency ${data['amount']}",
                         style: TextStyle(
                             // color: Theme.of(context).colorScheme.onBackground.withOpacity(0.9),
                             color: data['type'] == 'Credit'
@@ -111,7 +114,7 @@ class TransactionCard extends StatelessWidget {
                             fontSize: 15),
                       ),
                       Text(
-                        "LKR ${data['remainingAmount']}",
+                        "$currency ${data['remainingAmount']}",
                         style: TextStyle(
                             color: Theme.of(context)
                                 .colorScheme
