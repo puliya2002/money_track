@@ -7,6 +7,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:intl/intl.dart';
 
 import 'package:money_track/model/category_model.dart';
 import 'package:provider/provider.dart';
@@ -20,12 +21,20 @@ class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
 
 
+
   @override
   State<MainScreen> createState() => _MainScreenState();
 }
 
 class _MainScreenState extends State<MainScreen> {
   final user = FirebaseAuth.instance.currentUser!;
+  late String selectedMonth;
+
+  @override
+  void initState() {
+    super.initState();
+    selectedMonth = DateFormat('MMM y').format(DateTime.now());
+  }
 
 
 
@@ -33,89 +42,69 @@ class _MainScreenState extends State<MainScreen> {
   @override
 
   Widget build(BuildContext context) {
+
+    List<DropdownMenuItem<String>> _buildMonthDropdownItems() {
+      List<String> allMonths = [];
+      List<int> years = [];
+
+      DateTime currentDate = DateTime.now();
+      int currentYear = currentDate.year;
+
+      // Add all months for all years
+      for (int year = currentYear; year >= currentYear - 10; year--) {
+        for (int month = 12; month >= 1; month--) {
+          allMonths.add('${DateFormat('MMM').format(DateTime(year, month))} $year');
+        }
+        years.add(year);
+      }
+
+      return allMonths.map((String value) {
+        return DropdownMenuItem<String>(
+          value: value,
+          child: Text(value),
+        );
+      }).toList();
+    }
+
     String currency = Provider.of<CurrencyProvider>(context).selectedCurrency;
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 22.0, vertical: 10),
         child: Column(
           children: [
-            // Row(
-            //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //   children: [
-            //     Row(
-            //       children: [
-            //         Column(
-            //           children: [
-            //             Stack(
-            //               alignment: Alignment.center,
-            //               children: [
-            //                 Container(
-            //                   width: 30,
-            //                   height: 30,
-            //                   decoration: const BoxDecoration(
-            //                     shape: BoxShape.circle,
-            //                     color: Colors.yellow,
-            //                   ),
-            //                 ),
-            //                 Icon(
-            //                   CupertinoIcons.person_fill,
-            //                   color: Colors.black,
-            //                   size: 18,
-            //                 ),
-            //               ],
-            //             ),
-            //           ],
-            //         ),
-            //         const SizedBox(width: 8),
-            //         Column(
-            //           crossAxisAlignment: CrossAxisAlignment.start,
-            //           children: [
-            //             Text(
-            //               "Welcome!",
-            //               style: TextStyle(
-            //                   color: Theme.of(context).colorScheme.onBackground,
-            //                   fontWeight: FontWeight.w400,
-            //                   fontSize: 10),
-            //             ),
-            //             Text(
-            //               user.email!,
-            //               style: TextStyle(
-            //                   color: Theme.of(context).colorScheme.onBackground,
-            //                   fontWeight: FontWeight.w600,
-            //                   fontSize: 14),
-            //             ),
-            //           ],
-            //         ),
-            //       ],
-            //     ),
-            //     Row(
-            //       children: [
-            //         IconButton(
-            //           onPressed: () {
-            //             FirebaseAuth.instance.signOut();
-            //           },
-            //           icon: const Icon(
-            //               Icons.logout
-            //           ),
-            //         ),
-            //         IconButton(
-            //           onPressed: () {},
-            //           icon: const Icon(
-            //               Icons.menu_rounded
-            //           ),
-            //         ),
-            //
-            //       ],
-            //     )
-            //   ],
-            // ),
-            // const SizedBox(
-            //   height: 10,
-            // ),
-            Padding(
-              padding: const EdgeInsets.only(top: 8),
-              child: HeroCard(UserId: user.uid, currency: currency,)
+            Stack(
+              children: [
+                Padding(
+                    padding: const EdgeInsets.only(top: 8),
+                    child: HeroCard(UserId: user.uid, currency: currency, )
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 8, left: 15),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      DropdownButton<String>(
+                          value: selectedMonth, style: TextStyle(fontSize: 15),
+                          icon: Icon(Icons.arrow_drop_down_sharp, color: Colors.white),
+                          onChanged: (String? newValue) {
+                            setState(() {
+                              selectedMonth = newValue!;
+
+                            });
+                          },
+                          dropdownColor: Theme.of(context).colorScheme.primary,
+                          borderRadius: BorderRadius.circular(20),
+                          items: _buildMonthDropdownItems()
+
+                      ),
+                    ],
+                  ),
+                ),
+
+              ],
             ),
+
+
             const SizedBox(
               height: 20,
             ),
@@ -213,7 +202,7 @@ class _MainScreenState extends State<MainScreen> {
               height: 15,
             ),
 
-            TransactionsCard()
+            TransactionsCard(month: selectedMonth,)
           ],
         ),
       ),

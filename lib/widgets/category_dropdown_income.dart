@@ -33,6 +33,8 @@ class CtegoryDropDownIncome extends StatelessWidget {
                 ],
               )))
               .toList(),
+          dropdownColor: Theme.of(context).colorScheme.background,
+          borderRadius: BorderRadius.circular(25),
           onChanged: onChanged),
     );
   }

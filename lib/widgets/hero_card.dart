@@ -3,13 +3,13 @@ import 'dart:math';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:intl/intl.dart';
 
 class HeroCard extends StatelessWidget {
   HeroCard({super.key, required this.UserId, required this.currency,});
   final String UserId;
   final String currency;
-
-
 
   @override
   Widget build(BuildContext context){
@@ -35,13 +35,26 @@ class HeroCard extends StatelessWidget {
   }
 }
 
-
-class Cards extends StatelessWidget {
+class Cards extends StatefulWidget {
   const Cards({super.key, required this.data, required this.currency});
   final String currency;
 final Map data;
+
+  @override
+  State<Cards> createState() => _CardsState();
+}
+
+class _CardsState extends State<Cards> {
+
+
+
   @override
   Widget build(BuildContext context) {
+
+
+
+
+
     return Container(
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.width / 2,
@@ -65,18 +78,25 @@ final Map data;
         ],
       ),
       child: Padding(
-        padding: const EdgeInsets.all(18.0),
+        padding: const EdgeInsets.only(left: 18, right: 18, bottom: 15, top: 10),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
+
             Column(
               children: [
-                Text(
-                  "Balance",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
-                      fontWeight: FontWeight.w500),
+
+                Padding(
+                  padding: const EdgeInsets.only(top: 10),
+                  child: Center(
+                    child: Text(
+                      "Balance",
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                          fontWeight: FontWeight.w500),
+                    ),
+                  ),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -87,7 +107,7 @@ final Map data;
                           height: 15,
                         ),
                         Text(
-                          currency ,
+                          widget.currency ,
                           style: TextStyle(
                               color: Colors.white,
                               fontSize: 16,
@@ -96,7 +116,7 @@ final Map data;
                       ],
                     ),
                     Text(
-                      "${data['remainingAmount']}",
+                      "${widget.data['remainingAmount']}",
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 40,
@@ -151,7 +171,7 @@ final Map data;
                                   height: 3,
                                 ),
                                 Text(
-                                  currency,
+                                  widget.currency,
                                   style: TextStyle(
                                       color: Colors.white,
                                       fontSize: 11,
@@ -161,7 +181,7 @@ final Map data;
                             ),
 
                             Text(
-                              "${data['totalDebit']}",
+                              "${widget.data['totalDebit']}",
                               style: TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.w600,
@@ -218,7 +238,7 @@ final Map data;
                                   height: 3,
                                 ),
                                 Text(
-                                  currency,
+                                  widget.currency,
                                   style: TextStyle(
                                       color: Colors.white,
                                       fontSize: 11,
@@ -227,7 +247,7 @@ final Map data;
                               ],
                             ),
                             Text(
-                              "${data['totalCredit']}",
+                              "${widget.data['totalCredit']}",
                               style: TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.w600,

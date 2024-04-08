@@ -6,22 +6,25 @@ import 'package:money_track/data/icons_list.dart';
 import 'package:money_track/model/transaction_model.dart';
 
 class TransactionsCard extends StatelessWidget {
-  TransactionsCard({super.key});
+  TransactionsCard({super.key, required this.month});
+  final String month;
 
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: RecentTransactionList(),
+      child: RecentTransactionList(month: month,),
     );
   }
 }
 
 class RecentTransactionList extends StatelessWidget {
   RecentTransactionList({
-    super.key,
+    super.key, required this.month,
+
   });
 
   final userId = FirebaseAuth.instance.currentUser!.uid;
+  final String month;
 
   @override
   Widget build(BuildContext context) {
@@ -30,8 +33,9 @@ class RecentTransactionList extends StatelessWidget {
             .collection('users')
             .doc(userId)
             .collection("transactions")
+            .where('monthyear', isEqualTo: month)
             .orderBy('timestamp', descending: true)
-            .limit(30)
+            // .limit(30)
             .snapshots(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.hasError) {

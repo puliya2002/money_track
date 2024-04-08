@@ -120,6 +120,7 @@ class _AddTransactionFormState extends State<AddTransactionForm> {
             ),
             CtegoryDropDown(
               cattype: category,
+
               onChanged: (String? value) {
                 if (value != null) {
                   setState(() {
