@@ -32,13 +32,79 @@ class HeroCard extends StatelessWidget {
           .snapshots(),
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
         if (snapshot.hasError) {
-          return Text('Something went wrong');
-        } else if (snapshot.connectionState == ConnectionState.waiting) {
-          return Text("Loading");
-        } else if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-          return const Center(
-            child: Text("No transactions found"),
+          return Container(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.width / 2,
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [
+                  Theme.of(context).colorScheme.secondary,
+                  Theme.of(context).colorScheme.primary,
+                ],
+                transform: const GradientRotation(pi / 3),
+              ),
+              borderRadius: BorderRadius.circular(25),
+              boxShadow: [
+                BoxShadow(
+                    blurRadius: 20,
+                    color:
+                    Theme.of(context).colorScheme.shadow.withOpacity(0.4),
+                    offset: Offset(2, 1))
+              ],
+            ),
+            child: Center(
+              child: Text("Something went wrong"),
+            ),
           );
+        } else if (snapshot.connectionState == ConnectionState.waiting) {
+          return Container(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.width / 2,
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [
+                  Theme.of(context).colorScheme.secondary,
+                  Theme.of(context).colorScheme.primary,
+                ],
+                transform: const GradientRotation(pi / 3),
+              ),
+              borderRadius: BorderRadius.circular(25),
+              boxShadow: [
+                BoxShadow(
+                    blurRadius: 20,
+                    color:
+                    Theme.of(context).colorScheme.shadow.withOpacity(0.4),
+                    offset: Offset(2, 1))
+              ],
+            ),
+            child: Center(
+              child: Text("Loading"),
+            ),
+          );
+        } else if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
+          return Container(
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.width / 2,
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [
+                    Theme.of(context).colorScheme.secondary,
+                    Theme.of(context).colorScheme.primary,
+                  ],
+                  transform: const GradientRotation(pi / 3),
+                ),
+                borderRadius: BorderRadius.circular(25),
+                boxShadow: [
+                  BoxShadow(
+                      blurRadius: 20,
+                      color:
+                      Theme.of(context).colorScheme.shadow.withOpacity(0.4),
+                      offset: Offset(2, 1))
+                ],
+              ),
+              child: Center(
+                child: Text("No transactions found in this month"),
+              ));
         }
 
         var data = snapshot.data!.docs;
@@ -165,11 +231,25 @@ class _CardsState extends State<Cards> {
                       ],
                     ),
                     Text(
-                      "${widget.data['totalAmount'].toStringAsFixed(2)}",
+                      "${widget.data['totalAmount'].toInt()}",
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 40,
                           fontWeight: FontWeight.w600),
+                    ),
+                    Column(
+                      children: [
+                        SizedBox(
+                          height: 14,
+                        ),
+                        Text(
+                          ".${widget.data['totalAmount'].toStringAsFixed(2).split('.')[1]}",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20,
+                              fontWeight: FontWeight.w600),
+                        ),
+                      ],
                     ),
                   ],
                 ),
@@ -230,12 +310,27 @@ class _CardsState extends State<Cards> {
                             ),
 
                             Text(
-                              "${widget.data['totalDebit'].toStringAsFixed(2)}",
+                              "${widget.data['totalDebit'].toInt()}",
                               style: TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.w600,
                                 fontSize: 20,
                               ),
+                            ),
+                            Column(
+                              children: [
+                                SizedBox(
+                                  height: 3,
+                                ),
+                                Text(
+                                  ".${widget.data['totalDebit'].toStringAsFixed(2).split('.')[1]}",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 14,
+                                  ),
+                                ),
+                              ],
                             ),
                           ],
                         ),
@@ -296,12 +391,27 @@ class _CardsState extends State<Cards> {
                               ],
                             ),
                             Text(
-                              "${widget.data['totalCredit'].toStringAsFixed(2)}",
+                              "${widget.data['totalCredit'].toInt()}",
                               style: TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.w600,
                                 fontSize: 20,
                               ),
+                            ),
+                            Column(
+                              children: [
+                                SizedBox(
+                                  height: 3,
+                                ),
+                                Text(
+                                  ".${widget.data['totalCredit'].toStringAsFixed(2).split('.')[1]}",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 14,
+                                  ),
+                                ),
+                              ],
                             ),
                           ],
                         ),

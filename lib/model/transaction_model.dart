@@ -6,6 +6,7 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 import '../data/icons_list.dart';
+import '../data/icons_list_income.dart';
 import '../provider/currency_provider.dart';
 
 class TransactionModel extends StatelessWidget {
@@ -15,6 +16,7 @@ class TransactionModel extends StatelessWidget {
   });
   final dynamic data;
 
+  var appIconsIncome = AppIconsIncome();
   var appIcons = AppIcons();
 
   @override
@@ -62,8 +64,11 @@ class TransactionModel extends StatelessWidget {
                           shape: BoxShape.circle,
                         ),
                       ),
-                      FaIcon(
-                        appIcons.getExpenseCategoryIcons("${data['category']}"),
+                      FaIcon(data['type'] == 'Credit'?
+                        appIconsIncome.getExpenseCategoryIcons("${data['category']}")
+                          : appIcons.getExpenseCategoryIcons("${data['category']}")
+
+          ,
                         color: data['type'] == 'Credit'
                         ? Colors.green
                         : Colors.red,
@@ -109,7 +114,7 @@ class TransactionModel extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       Text(
-                        "${data['type'] == 'Credit' ? '+' : '-'} $currency ${data['amount']}",
+                        "${data['type'] == 'Credit' ? '+' : '-'} $currency ${data['amount'].toStringAsFixed(2)}",
                         style: TextStyle(
                             // color: Theme.of(context).colorScheme.onBackground.withOpacity(0.9),
                             color: data['type'] == 'Credit'
@@ -120,7 +125,7 @@ class TransactionModel extends StatelessWidget {
                             fontSize: 15),
                       ),
                       Text(
-                        "$currency ${data['remainingAmount']}",
+                        "$currency ${data['remainingAmount'].toStringAsFixed(2)}",
                         style: TextStyle(
                             color: Theme.of(context)
                                 .colorScheme
