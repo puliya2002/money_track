@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -38,7 +40,7 @@ class _AddTransactionFormIncomeState extends State<AddTransactionFormIncome> {
       });
       final user = FirebaseAuth.instance.currentUser;
 
-      var amount = int.parse(amountEditController.text);
+      var amount = double.parse(amountEditController.text);
       DateTime date = DateTime.now();
 
       var id = uid.v4();
@@ -49,9 +51,9 @@ class _AddTransactionFormIncomeState extends State<AddTransactionFormIncome> {
           .doc(user!.uid)
           .get();
 
-      int remainingAmount = userDoc['remainingAmount'];
-      int totalCredit = userDoc['totalCredit'];
-      int totalDebit = userDoc['totalDebit'];
+      double remainingAmount = userDoc['remainingAmount'].toDouble();
+      double totalCredit = userDoc['totalCredit'].toDouble();
+      double totalDebit = userDoc['totalDebit'].toDouble();
 
       if (type == 'Credit') {
         remainingAmount += amount;

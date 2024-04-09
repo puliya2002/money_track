@@ -37,7 +37,7 @@ class _AddTransactionFormState extends State<AddTransactionForm> {
       });
       final user = FirebaseAuth.instance.currentUser;
       //int timestamp = DateTime.now().microsecondsSinceEpoch;
-      var amount = int.parse(amountEditController.text);
+      var amount = double.parse(amountEditController.text);
       DateTime date = DateTime.now();
 
       var id = uid.v4();
@@ -48,9 +48,9 @@ class _AddTransactionFormState extends State<AddTransactionForm> {
           .doc(user!.uid)
           .get();
 
-      int remainingAmount = userDoc['remainingAmount'];
-      int totalCredit = userDoc['totalCredit'];
-      int totalDebit = userDoc['totalDebit'];
+      double remainingAmount = userDoc['remainingAmount'].toDouble();
+      double totalCredit = userDoc['totalCredit'].toDouble();
+      double totalDebit = userDoc['totalDebit'].toDouble();
 
       if (type == 'Credit') {
         remainingAmount += amount;
