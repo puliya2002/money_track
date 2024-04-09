@@ -6,16 +6,16 @@ import 'package:intl/intl.dart';
 import 'package:uuid/uuid.dart';
 
 import '../utils/app_validator.dart';
-import 'category_dropdown.dart';
+import 'category_dropdown_expense.dart';
 
-class AddTransactionForm extends StatefulWidget {
-  const AddTransactionForm({super.key});
+class AddTransactionFormExpense extends StatefulWidget {
+  const AddTransactionFormExpense({super.key});
 
   @override
-  State<AddTransactionForm> createState() => _AddTransactionFormState();
+  State<AddTransactionFormExpense> createState() => _AddTransactionFormExpenseState();
 }
 
-class _AddTransactionFormState extends State<AddTransactionForm> {
+class _AddTransactionFormExpenseState extends State<AddTransactionFormExpense> {
   var type = "Debit"; // Changed initial value to 'Credit'
   var category = "Others";
   var amountEditController = TextEditingController();
@@ -118,7 +118,7 @@ class _AddTransactionFormState extends State<AddTransactionForm> {
               keyboardType: TextInputType.number,
               decoration: InputDecoration(labelText: 'Amount'),
             ),
-            CtegoryDropDown(
+            CategoryDropDownExpense(
               cattype: category,
 
               onChanged: (String? value) {

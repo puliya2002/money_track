@@ -4,8 +4,8 @@ import 'package:money_track/data/icons_list.dart';
 
 import '../data/icons_list_income.dart';
 
-class CtegoryDropDownIncome extends StatelessWidget {
-  CtegoryDropDownIncome({super.key, this.cattype, required this.onChanged});
+class CategoryDropDownIncome extends StatelessWidget {
+  CategoryDropDownIncome({super.key, this.cattype, required this.onChanged});
   final String? cattype;
   final ValueChanged<String?> onChanged;
 

@@ -14,7 +14,7 @@ import 'package:provider/provider.dart';
 
 import '../service/category_service.dart';
 import '../provider/currency_provider.dart';
-import '../widgets/hero_card.dart';
+import '../widgets/main_hero_card.dart';
 import '../widgets/recent_transactions_card.dart';
 
 class MainScreen extends StatefulWidget {

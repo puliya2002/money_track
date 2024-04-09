@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:money_track/widgets/time_line_category.dart';
+import 'package:money_track/widgets/time_line_category_expense.dart';
 import 'package:money_track/widgets/time_line_category_income.dart';
-import 'package:money_track/widgets/transaction_list.dart';
+import 'package:money_track/widgets/states_transaction_list.dart';
 
 class TypeTabBar extends StatefulWidget {
   const TypeTabBar({Key? key, required this.monthYear}) : super(key: key);
@@ -57,7 +57,7 @@ class _TypeTabBarState extends State<TypeTabBar> {
                         },
                       ),
                       SizedBox(height: 15,),
-                      TransactionList(
+                      StatesTransactionList(
                         category: categoryIncome,
                         type: 'Credit',
                         monthYear: widget.monthYear,
@@ -67,7 +67,7 @@ class _TypeTabBarState extends State<TypeTabBar> {
                   Column(
                     children: [
                       SizedBox(height: 15,),
-                      TimeLineCategory(
+                      TimeLineCategoryExpense(
                         onChanged: (String? value) {
                           if (value != null) {
                             setState(() {
@@ -77,7 +77,7 @@ class _TypeTabBarState extends State<TypeTabBar> {
                         },
                       ),
                       SizedBox(height: 15,),
-                      TransactionList(
+                      StatesTransactionList(
                         category: category,
                         type: 'Debit',
                         monthYear: widget.monthYear,

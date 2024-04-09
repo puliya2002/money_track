@@ -3,10 +3,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../model/transaction_model.dart';
+import '../model/transaction_card_model.dart';
 
-class TransactionList extends StatelessWidget {
-  TransactionList({
+class StatesTransactionList extends StatelessWidget {
+  StatesTransactionList({
     Key? key,
     required this.category,
     required this.type,

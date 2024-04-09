@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
 
-import '../model/transaction_model.dart';
+import '../model/transaction_card_model.dart';
 
 class HeroCard extends StatelessWidget {
   HeroCard({

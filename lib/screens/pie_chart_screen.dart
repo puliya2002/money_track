@@ -5,7 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:money_track/widgets/pie_chart_income.dart';
 import 'dart:math';
 import '../components/my_appbar.dart';
-import '../model/transaction_model.dart';
+import '../model/transaction_card_model.dart';
 import '../widgets/pie_chart_expence.dart';
 
 class PieChartScreen extends StatelessWidget {

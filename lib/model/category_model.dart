@@ -64,37 +64,37 @@
 //   }
 // }
 
-
-import 'dart:convert';
-
-GetCategories getCategoriesFromJson(String str) => GetCategories.fromJson(json.decode(str));
-
-String getCategoriesToJson(GetCategories data) => json.encode(data.toJson());
-
-class GetCategories {
-  String id;
-  String name;
-  String color;
-  String icon;
-
-  GetCategories({
-    required this.id,
-    required this.name,
-    required this.color,
-    required this.icon,
-  });
-
-  factory GetCategories.fromJson(Map<String, dynamic> json) => GetCategories(
-    id: json["id"],
-    name: json["name"],
-    color: json["color"],
-    icon: json["icon"],
-  );
-
-  Map<String, dynamic> toJson() => {
-    "id": id,
-    "name": name,
-    "color": color,
-    "icon": icon,
-  };
-}
+//
+// import 'dart:convert';
+//
+// GetCategories getCategoriesFromJson(String str) => GetCategories.fromJson(json.decode(str));
+//
+// String getCategoriesToJson(GetCategories data) => json.encode(data.toJson());
+//
+// class GetCategories {
+//   String id;
+//   String name;
+//   String color;
+//   String icon;
+//
+//   GetCategories({
+//     required this.id,
+//     required this.name,
+//     required this.color,
+//     required this.icon,
+//   });
+//
+//   factory GetCategories.fromJson(Map<String, dynamic> json) => GetCategories(
+//     id: json["id"],
+//     name: json["name"],
+//     color: json["color"],
+//     icon: json["icon"],
+//   );
+//
+//   Map<String, dynamic> toJson() => {
+//     "id": id,
+//     "name": name,
+//     "color": color,
+//     "icon": icon,
+//   };
+// }

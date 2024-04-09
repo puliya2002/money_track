@@ -7,7 +7,7 @@ import 'package:money_track/widgets/category_dropdown_income.dart';
 import 'package:uuid/uuid.dart';
 
 import '../utils/app_validator.dart';
-import 'category_dropdown.dart';
+import 'category_dropdown_expense.dart';
 
 class AddTransactionFormIncome extends StatefulWidget {
   const AddTransactionFormIncome({super.key});
@@ -119,7 +119,7 @@ class _AddTransactionFormIncomeState extends State<AddTransactionFormIncome> {
               keyboardType: TextInputType.number,
               decoration: InputDecoration(labelText: 'Amount'),
             ),
-            CtegoryDropDownIncome(
+            CategoryDropDownIncome(
               cattype: category,
               onChanged: (String? value) {
                 if (value != null) {

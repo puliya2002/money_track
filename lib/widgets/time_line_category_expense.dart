@@ -3,17 +3,17 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:money_track/data/icons_list.dart';
 
-class TimeLineCategory extends StatefulWidget {
-  TimeLineCategory({super.key, required this.onChanged });
+class TimeLineCategoryExpense extends StatefulWidget {
+  TimeLineCategoryExpense({super.key, required this.onChanged });
   final ValueChanged<String?> onChanged;
 
 
   @override
-  State<TimeLineCategory> createState() => _TimeLineCategoryState();
+  State<TimeLineCategoryExpense> createState() => _TimeLineCategoryExpenseState();
 
 }
 
-class _TimeLineCategoryState extends State<TimeLineCategory> {
+class _TimeLineCategoryExpenseState extends State<TimeLineCategoryExpense> {
 
 String currentCategory = "";
 List<Map<String, dynamic>> categorylist = [];

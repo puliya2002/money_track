@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 
 
 
-import '../widgets/add_transaction_form.dart';
+import '../widgets/add_transaction_expense_form.dart';
 import '../components/my_appbar.dart';
 import '../widgets/add_transaction_form_income.dart';
 import 'main_screen.dart';
@@ -29,7 +29,7 @@ class _HomeScreenState extends State<HomeScreen> {
   _dialogBuilder(BuildContext context){
     return showDialog(context: context, builder: (context){
       return AlertDialog(
-        content: AddTransactionForm(),
+        content: AddTransactionFormExpense(),
       );
     }
 

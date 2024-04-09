@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:money_track/data/icons_list.dart';
 
-class CtegoryDropDown extends StatelessWidget {
-  CtegoryDropDown({super.key, this.cattype, required this.onChanged});
+class CategoryDropDownExpense extends StatelessWidget {
+  CategoryDropDownExpense({super.key, this.cattype, required this.onChanged});
   final String? cattype;
   final ValueChanged<String?> onChanged;
 
