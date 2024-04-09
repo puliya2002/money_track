@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../model/transaction_model.dart';
@@ -53,25 +54,41 @@ class TransactionList extends StatelessWidget {
               ? transaction['amount']
               : -transaction['amount'];
         }
-        return Column(
-          children: [
-            ListView.builder(
-              shrinkWrap: true,
-              itemCount: data.length,
-              itemBuilder: (context, index) {
-                var cardData = data[index];
-                return TransactionModel(data: cardData);
-              },
-            ),
-            SizedBox(height: 10),
-            Text(
-              'Total: ${totalAmount.toStringAsFixed(2)}', // Display total amount
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 16,
+        return Expanded(
+          child: Column(
+            children: [
+              Expanded(
+                child: DefaultTabController(
+                  length: 20,
+                  child: ListView.builder(
+                    physics: AlwaysScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    itemCount: data.length,
+                    itemBuilder: (context, index) {
+                      var cardData = data[index];
+                      return TransactionModel(data: cardData);
+                    },
+                  ),
+                ),
               ),
-            ),
-          ],
+              Positioned(
+                left: 0,
+                right: 0,
+                bottom: 0,
+                child: Container(
+                  color: Colors.transparent, // Change color as per your design
+                  padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                  child: Text(
+                    '${totalAmount.toStringAsFixed(2)}', // Display total amount
+                    style: TextStyle(
+                      fontWeight: FontWeight.w800,
+                      fontSize: 16,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
         );
       },
     );

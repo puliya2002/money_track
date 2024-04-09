@@ -44,49 +44,45 @@ class _TypeTabBarState extends State<TypeTabBar> {
             Expanded(
               child: TabBarView(
                 children: [
-                  SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        SizedBox(height: 15,),
-                        TimeLineCategoryIncome(
-                          onChanged: (String? value) {
-                            if (value != null) {
-                              setState(() {
-                                categoryIncome = value;
-                              });
-                            }
-                          },
-                        ),
-                        SizedBox(height: 15,),
-                        TransactionList(
-                          category: categoryIncome,
-                          type: 'Credit',
-                          monthYear: widget.monthYear,
-                        ),
-                      ],
-                    ),
+                  Column(
+                    children: [
+                      SizedBox(height: 15,),
+                      TimeLineCategoryIncome(
+                        onChanged: (String? value) {
+                          if (value != null) {
+                            setState(() {
+                              categoryIncome = value;
+                            });
+                          }
+                        },
+                      ),
+                      SizedBox(height: 15,),
+                      TransactionList(
+                        category: categoryIncome,
+                        type: 'Credit',
+                        monthYear: widget.monthYear,
+                      ),
+                    ],
                   ),
-                  SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        SizedBox(height: 15,),
-                        TimeLineCategory(
-                          onChanged: (String? value) {
-                            if (value != null) {
-                              setState(() {
-                                category = value;
-                              });
-                            }
-                          },
-                        ),
-                        SizedBox(height: 15,),
-                        TransactionList(
-                          category: category,
-                          type: 'Debit',
-                          monthYear: widget.monthYear,
-                        ),
-                      ],
-                    ),
+                  Column(
+                    children: [
+                      SizedBox(height: 15,),
+                      TimeLineCategory(
+                        onChanged: (String? value) {
+                          if (value != null) {
+                            setState(() {
+                              category = value;
+                            });
+                          }
+                        },
+                      ),
+                      SizedBox(height: 15,),
+                      TransactionList(
+                        category: category,
+                        type: 'Debit',
+                        monthYear: widget.monthYear,
+                      ),
+                    ],
                   ),
                 ],
               ),

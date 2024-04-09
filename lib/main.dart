@@ -3,10 +3,10 @@ import 'dart:io';
 import 'package:money_track/screens/foget_password_screen.dart';
 import 'package:money_track/screens/home_screen.dart';
 import 'package:money_track/screens/main_screen.dart';
+import 'package:money_track/screens/pie_chart_screen.dart';
 import 'package:money_track/screens/profile_screen.dart';
 import 'package:money_track/screens/register_screen.dart';
 import 'package:money_track/screens/states_screen.dart';
-import 'package:money_track/screens/test_screen.dart';
 import 'package:money_track/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -63,7 +63,7 @@ class MyApp extends StatelessWidget {
         '/mainScreen': (context) => MainScreen(),
         '/stateScreen': (context) => StatScreen(),
         '/profileScreen': (context) => ProfileScreen(),
-        '/test': (context) => Test(),
+        '/pie': (context) => PieChartScreen(),
 
 
 

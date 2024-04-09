@@ -76,7 +76,11 @@ class _MainScreenState extends State<MainScreen> {
               children: [
                 Padding(
                     padding: const EdgeInsets.only(top: 8),
-                    child: HeroCard( currency: currency, month: selectedMonth, )
+                    child: GestureDetector(
+                      onTap: (){
+                        Navigator.pushNamed(context, '/pie', arguments: selectedMonth,);
+                      },
+                        child: HeroCard( currency: currency, month: selectedMonth, ))
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 8, left: 15),

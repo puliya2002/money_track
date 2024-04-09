@@ -37,29 +37,32 @@ class _StatScreenState extends State<StatScreen> {
 
 
 
-    return SafeArea(
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-        child: Column(
-          children: [
-            TimeLineMonth(
-            onChanged: (String? value) {
-              if (value != null) {
-                setState(() {
-                  monthYear = value;
-                });
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      child: Expanded(
+        child: DefaultTabController(
+          length: 2,
+          child: Column(
+            children: [
+              TimeLineMonth(
+              onChanged: (String? value) {
+                if (value != null) {
+                  setState(() {
+                    monthYear = value;
+                  });
 
+                }
               }
-            }
-            ),
+              ),
 
-            TypeTabBar( monthYear: monthYear, ),
-          ],
-        )
+              TypeTabBar( monthYear: monthYear, ),
+            ],
+          ),
+        ),
+      )
 
 
 
-      ),
     );
   }
 }
