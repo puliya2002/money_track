@@ -76,7 +76,7 @@ class _MainScreenState extends State<MainScreen> {
               children: [
                 Padding(
                     padding: const EdgeInsets.only(top: 8),
-                    child: HeroCard(UserId: user.uid, currency: currency, )
+                    child: HeroCard( currency: currency, month: selectedMonth, )
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 8, left: 15),

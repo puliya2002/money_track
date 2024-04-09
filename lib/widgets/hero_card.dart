@@ -1,43 +1,92 @@
 import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
 
+import '../model/transaction_model.dart';
+
 class HeroCard extends StatelessWidget {
-  HeroCard({super.key, required this.UserId, required this.currency,});
-  final String UserId;
+  HeroCard({
+    super.key,
+    required this.month,
+    required this.currency,
+  });
+
+  final userId = FirebaseAuth.instance.currentUser!.uid;
+  final String month;
   final String currency;
 
   @override
-  Widget build(BuildContext context){
-    final Stream<DocumentSnapshot> _usersStream =
-    FirebaseFirestore.instance.collection('users').doc(UserId).snapshots();
-    return StreamBuilder<DocumentSnapshot>(
-      stream: _usersStream,
-      builder: (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
+  Widget build(BuildContext context) {
+    return StreamBuilder<QuerySnapshot>(
+      stream: FirebaseFirestore.instance
+          .collection('users')
+          .doc(userId)
+          .collection("transactions")
+          .where('monthyear', isEqualTo: month)
+          .orderBy('timestamp', descending: true)
+          .snapshots(),
+      builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
         if (snapshot.hasError) {
           return Text('Something went wrong');
+        } else if (snapshot.connectionState == ConnectionState.waiting) {
+          return Text("Loading");
+        } else if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
+          return const Center(
+            child: Text("No transactions found"),
+          );
         }
 
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return Text("Loading");
+        var data = snapshot.data!.docs;
+        double totalAmount = 0.0;
+        double totalCredit = 0.0;
+        double totalDebit = 0.0;// Initialize total amount variable
+        for (var transaction in data) {
+          // Calculate total amount
+          totalAmount += transaction['type'] == 'Credit'
+              ? transaction['amount']
+              : -transaction['amount'];
         }
-        var data = snapshot.data!.data() as Map<String, dynamic>;
+
+
+
+
+        for (var transactionCredit in data) {
+          // Calculate total amount
+          totalCredit += transactionCredit['type'] == 'Credit'
+               ? transactionCredit['amount']
+               : 0;
+        }
+        for (var transactionDebit in data) {
+          // Calculate total amount
+          totalDebit += transactionDebit['type'] == 'Debit'
+              ? transactionDebit['amount']
+              : 0;
+        }
 
         return Cards(
-          data: data, currency: currency,
+          currency: currency,
+          UserId: userId,
+          data: {
+            'totalAmount': totalAmount,
+            'totalCredit': totalCredit,
+            'totalDebit': totalDebit,
+          },
         );
       },
     );
   }
 }
 
+
 class Cards extends StatefulWidget {
-  const Cards({super.key, required this.data, required this.currency});
+  const Cards({super.key, required this.data, required this.currency, required this.UserId});
   final String currency;
+  final String UserId;
 final Map data;
 
   @override
@@ -116,7 +165,7 @@ class _CardsState extends State<Cards> {
                       ],
                     ),
                     Text(
-                      "${widget.data['remainingAmount']}",
+                      "${widget.data['totalAmount'].toStringAsFixed(2)}",
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 40,
@@ -181,7 +230,7 @@ class _CardsState extends State<Cards> {
                             ),
 
                             Text(
-                              "${widget.data['totalDebit']}",
+                              "${widget.data['totalDebit'].toStringAsFixed(2)}",
                               style: TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.w600,
@@ -247,7 +296,7 @@ class _CardsState extends State<Cards> {
                               ],
                             ),
                             Text(
-                              "${widget.data['totalCredit']}",
+                              "${widget.data['totalCredit'].toStringAsFixed(2)}",
                               style: TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.w600,
