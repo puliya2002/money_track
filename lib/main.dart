@@ -54,7 +54,7 @@ class MyApp extends StatelessWidget {
       theme: Provider.of<ThemeProvider>(context).getTheme(),
 
 
-      //initialRoute: '/test',
+      initialRoute: '/test',
       routes: {
         '/register': (context) => RegisterScreen(showLoginPage: () {  },),
         '/login': (context) => LoginScreen(showRegisterPage: () {  },),

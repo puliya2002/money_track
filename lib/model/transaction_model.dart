@@ -109,7 +109,7 @@ class TransactionModel extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       Text(
-                        "${data['type'] == 'Credit' ? '+' : '-'} $currency ${data['amount'].toStringAsFixed(2)}",
+                        "${data['type'] == 'Credit' ? '+' : '-'} $currency ${data['amount']}",
                         style: TextStyle(
                             // color: Theme.of(context).colorScheme.onBackground.withOpacity(0.9),
                             color: data['type'] == 'Credit'
@@ -120,7 +120,7 @@ class TransactionModel extends StatelessWidget {
                             fontSize: 15),
                       ),
                       Text(
-                        "$currency ${data['remainingAmount'].toStringAsFixed(2)}",
+                        "$currency ${data['remainingAmount']}",
                         style: TextStyle(
                             color: Theme.of(context)
                                 .colorScheme
