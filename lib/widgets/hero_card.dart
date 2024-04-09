@@ -73,7 +73,7 @@ class HeroCard extends StatelessWidget {
                 BoxShadow(
                     blurRadius: 20,
                     color:
-                    Theme.of(context).colorScheme.shadow.withOpacity(0.4),
+                        Theme.of(context).colorScheme.shadow.withOpacity(0.4),
                     offset: Offset(2, 1))
               ],
             ),
@@ -98,7 +98,7 @@ class HeroCard extends StatelessWidget {
                 BoxShadow(
                     blurRadius: 20,
                     color:
-                    Theme.of(context).colorScheme.shadow.withOpacity(0.4),
+                        Theme.of(context).colorScheme.shadow.withOpacity(0.4),
                     offset: Offset(2, 1))
               ],
             ),
@@ -132,28 +132,19 @@ class HeroCard extends StatelessWidget {
               : 0;
         }
 
-        return
-            Cards(
-              currency: currency,
-              UserId: userId,
-              data: {
-                'totalAmount': totalAmount,
-                'totalCredit': totalCredit,
-                'totalDebit': totalDebit,
-              },
-
-            );
-
-
-
-
+        return Cards(
+          currency: currency,
+          UserId: userId,
+          data: {
+            'totalAmount': totalAmount,
+            'totalCredit': totalCredit,
+            'totalDebit': totalDebit,
+          },
+        );
       },
     );
   }
 }
-
-
-
 
 class Cards extends StatefulWidget {
   const Cards(
