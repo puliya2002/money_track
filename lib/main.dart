@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:money_track/provider/business_personal_provider.dart';
 import 'package:money_track/screens/foget_password_screen.dart';
 import 'package:money_track/screens/home_screen.dart';
 import 'package:money_track/screens/main_screen.dart';
@@ -7,6 +8,11 @@ import 'package:money_track/screens/pie_chart_screen.dart';
 import 'package:money_track/screens/profile_screen.dart';
 import 'package:money_track/screens/register_screen.dart';
 import 'package:money_track/screens/states_screen.dart';
+import 'package:money_track/screens_business/home_screen_business.dart';
+import 'package:money_track/screens_business/main_screen_business.dart';
+import 'package:money_track/screens_business/pie_chart_screen_business.dart';
+
+import 'package:money_track/screens_business/states_screen_business.dart';
 import 'package:money_track/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -34,7 +40,8 @@ void main() async {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => ThemeProvider()),
-        ChangeNotifierProvider(create: (_) => CurrencyProvider()), // Add CurrencyProvider here
+        ChangeNotifierProvider(create: (_) => CurrencyProvider()),
+        ChangeNotifierProvider(create: (context) => SwitchProvider()),
       ],
       child: const MyApp(),
     ),
@@ -54,7 +61,7 @@ class MyApp extends StatelessWidget {
       theme: Provider.of<ThemeProvider>(context).getTheme(),
 
 
-      // initialRoute: '/test',
+      // initialRoute: '/homeScreenBusiness',
       routes: {
         '/register': (context) => RegisterScreen(showLoginPage: () {  },),
         '/login': (context) => LoginScreen(showRegisterPage: () {  },),
@@ -64,6 +71,11 @@ class MyApp extends StatelessWidget {
         '/stateScreen': (context) => StatScreen(),
         '/profileScreen': (context) => ProfileScreen(),
         '/pie': (context) => PieChartScreen(),
+
+        '/homeScreenBusiness': (context) => HomeScreenBusiness(),
+        '/mainScreenBusiness': (context) => MainScreenBusiness(),
+        '/stateScreenBusiness': (context) => StatScreenBusiness(),
+        '/pieBusiness': (context) => PieChartScreenBusiness(),
 
 
 

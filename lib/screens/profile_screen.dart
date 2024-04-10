@@ -35,7 +35,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return  Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(40.0),
-        child: MyAppBar(),),
+        child: MyAppBar(image: 'assets/Logo.png', actionSection: true,),),
       body: Padding(
         padding: const EdgeInsets.only(top: 30),
         child: StreamBuilder(

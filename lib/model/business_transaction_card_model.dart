@@ -8,25 +8,27 @@ import 'package:provider/provider.dart';
 
 import '../data/icons_list_expense.dart';
 import '../data/icons_list_income.dart';
+import '../data_business/business_icons_list_expense.dart';
+import '../data_business/business_icons_list_income.dart';
 import '../provider/currency_provider.dart';
 
-class TransactionModel extends StatefulWidget {
-  TransactionModel({
+class BusinessTransactionModel extends StatefulWidget {
+  BusinessTransactionModel({
     super.key,
     required this.data,
   });
   final dynamic data;
 
   @override
-  State<TransactionModel> createState() => _TransactionModelState();
+  State<BusinessTransactionModel> createState() => _BusinessTransactionModelState();
 }
 
-class _TransactionModelState extends State<TransactionModel> {
+class _BusinessTransactionModelState extends State<BusinessTransactionModel> {
   final userId = FirebaseAuth.instance.currentUser!.uid;
 
-  var appIconsIncome = AppIconsIncome();
+  var appIconsIncome = BusinessAppIconsIncome();
 
-  var appIcons = AppIconsExpense();
+  var appIcons = BusinessAppIconsExpense();
 
   String title = '';
   double amount = 0.0;
@@ -109,7 +111,7 @@ class _TransactionModelState extends State<TransactionModel> {
                       FirebaseFirestore.instance
                           .collection('users')
                           .doc(userId)
-                          .collection("transactions")
+                          .collection("business_transactions")
                           .doc(widget.data['id'])
                           .update({'title': title, 'amount': amount})
                           .then((_) {
@@ -153,7 +155,7 @@ class _TransactionModelState extends State<TransactionModel> {
                       FirebaseFirestore.instance
                           .collection('users')
                           .doc(userId)
-                          .collection("transactions")
+                          .collection("business_transactions")
                           .doc(widget.data['id'])
                           .delete()
                           .then((value) => print("Transaction deleted"))

@@ -2,24 +2,27 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:money_track/data/icons_list_expense.dart';
+import 'package:money_track/data/icons_list_income.dart';
 
-class TimeLineCategoryExpense extends StatefulWidget {
-  TimeLineCategoryExpense({super.key, required this.onChanged });
+import '../data_business/business_icons_list_income.dart';
+
+class BusinessTimeLineCategoryIncome extends StatefulWidget {
+  BusinessTimeLineCategoryIncome({super.key, required this.onChanged });
   final ValueChanged<String?> onChanged;
 
 
   @override
-  State<TimeLineCategoryExpense> createState() => _TimeLineCategoryExpenseState();
+  State<BusinessTimeLineCategoryIncome> createState() => _BusinessTimeLineCategoryIncomeState();
 
 }
 
-class _TimeLineCategoryExpenseState extends State<TimeLineCategoryExpense> {
+class _BusinessTimeLineCategoryIncomeState extends State<BusinessTimeLineCategoryIncome> {
 
 String currentCategory = "";
 List<Map<String, dynamic>> categorylist = [];
 
 final scrollCounter = ScrollController();
-var appIcons = AppIconsExpense();
+var appIcons = BusinessAppIconsIncome();
 
 
 var addCat =     {
@@ -31,7 +34,7 @@ var addCat =     {
 void initState() {
   super.initState();
   setState(() {
-    categorylist = appIcons.homeExpensesCategories;
+    categorylist = appIcons.homeExpensesCategoriesIncome;
     categorylist.insert(0, addCat);
   });
 
@@ -75,7 +78,7 @@ Widget build(BuildContext context) {
                   margin: EdgeInsets.all(8),
                   decoration: BoxDecoration(
                     color: currentCategory == data['name']
-                        ? Colors.red
+                        ? Colors.green
                         : Theme.of(context).colorScheme.secondary,
 
                     borderRadius: BorderRadius.all(Radius.circular(80)),

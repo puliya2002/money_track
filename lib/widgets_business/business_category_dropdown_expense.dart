@@ -2,14 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:money_track/data/icons_list_expense.dart';
 
-import '../data/icons_list_income.dart';
+import '../data_business/business_icons_list_expense.dart';
 
-class CategoryDropDownIncome extends StatelessWidget {
-  CategoryDropDownIncome({super.key, this.cattype, required this.onChanged});
+class BusinessCategoryDropDownExpense extends StatelessWidget {
+  BusinessCategoryDropDownExpense({super.key, this.cattype, required this.onChanged});
   final String? cattype;
   final ValueChanged<String?> onChanged;
 
-  var appIcons = AppIconsIncome();
+  var appIcons = BusinessAppIconsExpense();
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class CategoryDropDownIncome extends StatelessWidget {
         value: cattype,
           isExpanded: true,
           hint: Text("Selcet Category"),
-          items: appIcons.homeExpensesCategoriesIncome
+          items: appIcons.homeExpensesCategories
               .map((e) => DropdownMenuItem<String>(
             value: e['name'],
               child: Row(

@@ -7,9 +7,11 @@ import 'dart:math';
 import '../components/my_appbar.dart';
 import '../model/transaction_card_model.dart';
 import '../widgets/pie_chart_expence.dart';
+import '../widgets_business/business_pie_chart_expence.dart';
+import '../widgets_business/business_pie_chart_income.dart';
 
-class PieChartScreen extends StatelessWidget {
-  PieChartScreen({super.key});
+class PieChartScreenBusiness extends StatelessWidget {
+  PieChartScreenBusiness({super.key});
 
   final userId = FirebaseAuth.instance.currentUser!.uid;
 
@@ -20,7 +22,7 @@ class PieChartScreen extends StatelessWidget {
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(40.0),
-        child: MyAppBar(image: 'assets/Logo.png', actionSection: false,),
+        child: MyAppBar(image: 'assets/LogoBusiness5.png', actionSection: false,),
       ),
       body: Expanded(
         child: Padding(
@@ -50,7 +52,7 @@ class PieChartScreen extends StatelessWidget {
                   child:
                   Padding(
                     padding: const EdgeInsets.all( 20),
-                    child: PieChartExpence(userId: userId, selectedMonth: selectedMonth, ),
+                    child: BusinessPieChartExpence(userId: userId, selectedMonth: selectedMonth, ),
                   ),
                 ),
               ),
@@ -77,7 +79,7 @@ class PieChartScreen extends StatelessWidget {
                   child:
                   Padding(
                     padding: const EdgeInsets.all( 20),
-                    child: PieChartIncome(userId: userId, selectedMonth: selectedMonth, ),
+                    child: BusinessPieChartIncome(userId: userId, selectedMonth: selectedMonth, ),
                   ),
                 ),
               ),

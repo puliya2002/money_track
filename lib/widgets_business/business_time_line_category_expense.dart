@@ -3,23 +3,25 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:money_track/data/icons_list_expense.dart';
 
-class TimeLineCategoryExpense extends StatefulWidget {
-  TimeLineCategoryExpense({super.key, required this.onChanged });
+import '../data_business/business_icons_list_expense.dart';
+
+class BusinessTimeLineCategoryExpense extends StatefulWidget {
+  BusinessTimeLineCategoryExpense({super.key, required this.onChanged });
   final ValueChanged<String?> onChanged;
 
 
   @override
-  State<TimeLineCategoryExpense> createState() => _TimeLineCategoryExpenseState();
+  State<BusinessTimeLineCategoryExpense> createState() => _BusinessTimeLineCategoryExpenseState();
 
 }
 
-class _TimeLineCategoryExpenseState extends State<TimeLineCategoryExpense> {
+class _BusinessTimeLineCategoryExpenseState extends State<BusinessTimeLineCategoryExpense> {
 
 String currentCategory = "";
 List<Map<String, dynamic>> categorylist = [];
 
 final scrollCounter = ScrollController();
-var appIcons = AppIconsExpense();
+var appIcons = BusinessAppIconsExpense();
 
 
 var addCat =     {

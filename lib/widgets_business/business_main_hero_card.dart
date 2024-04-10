@@ -9,8 +9,8 @@ import 'package:intl/intl.dart';
 
 import '../model/transaction_card_model.dart';
 
-class HeroCard extends StatelessWidget {
-  HeroCard({
+class BusinessHeroCard extends StatelessWidget {
+  BusinessHeroCard({
     super.key,
     required this.month,
     required this.currency,
@@ -26,7 +26,7 @@ class HeroCard extends StatelessWidget {
       stream: FirebaseFirestore.instance
           .collection('users')
           .doc(userId)
-          .collection("transactions")
+          .collection("business_transactions")
           .where('monthyear', isEqualTo: month)
           .orderBy('timestamp', descending: true)
           .snapshots(),
@@ -134,7 +134,7 @@ class HeroCard extends StatelessWidget {
               : 0;
         }
 
-        return Cards(
+        return Businessards(
           currency: currency,
           UserId: userId,
           data: {
@@ -149,17 +149,17 @@ class HeroCard extends StatelessWidget {
 }
 
 
-class Cards extends StatefulWidget {
-  const Cards({super.key, required this.data, required this.currency, required this.UserId});
+class Businessards extends StatefulWidget {
+  const Businessards({super.key, required this.data, required this.currency, required this.UserId});
   final String currency;
   final String UserId;
 final Map data;
 
   @override
-  State<Cards> createState() => _CardsState();
+  State<Businessards> createState() => _BusinessardsState();
 }
 
-class _CardsState extends State<Cards> {
+class _BusinessardsState extends State<Businessards> {
 
 
 
@@ -174,6 +174,7 @@ class _CardsState extends State<Cards> {
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.width / 2,
       decoration: BoxDecoration(
+
         gradient: LinearGradient(
           colors: [
             Theme.of(context).colorScheme.secondary,
@@ -205,10 +206,10 @@ class _CardsState extends State<Cards> {
                   padding: const EdgeInsets.only(top: 10),
                   child: Center(
                     child: Text(
-                      "BALANCE",
+                      "BUSINESS BALANCE",
                       style: TextStyle(
                           color: Colors.white,
-                          fontSize: 18,
+                          fontSize: 15,
                           fontWeight: FontWeight.w500),
                     ),
                   ),
@@ -284,7 +285,7 @@ class _CardsState extends State<Cards> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "Expenses",
+                          "Debit",
                           style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.w500,
@@ -367,7 +368,7 @@ class _CardsState extends State<Cards> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "Incomes",
+                          "Credit",
                           style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.w500,

@@ -16,17 +16,19 @@ import '../service/category_service.dart';
 import '../provider/currency_provider.dart';
 import '../widgets/main_hero_card.dart';
 import '../widgets/recent_transactions_card.dart';
+import '../widgets_business/business_main_hero_card.dart';
+import '../widgets_business/business_recent_transactions_card.dart';
 
-class MainScreen extends StatefulWidget {
-  const MainScreen({super.key});
+class MainScreenBusiness extends StatefulWidget {
+  const MainScreenBusiness({super.key});
 
 
 
   @override
-  State<MainScreen> createState() => _MainScreenState();
+  State<MainScreenBusiness> createState() => _MainScreenBusinessState();
 }
 
-class _MainScreenState extends State<MainScreen> {
+class _MainScreenBusinessState extends State<MainScreenBusiness> {
   final user = FirebaseAuth.instance.currentUser!;
   late String selectedMonth;
 
@@ -78,9 +80,9 @@ class _MainScreenState extends State<MainScreen> {
                     padding: const EdgeInsets.only(top: 8),
                     child: GestureDetector(
                       onTap: (){
-                        Navigator.pushNamed(context, '/pie', arguments: selectedMonth,);
+                        Navigator.pushNamed(context, '/pieBusiness', arguments: selectedMonth,);
                       },
-                        child: HeroCard( currency: currency, month: selectedMonth, ))
+                        child: BusinessHeroCard( currency: currency, month: selectedMonth, ))
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 8, left: 15),
@@ -118,9 +120,9 @@ class _MainScreenState extends State<MainScreen> {
                 Row(
                   children: [
                     Text(
-                      "Recent Transactions",
+                      "Recent Business Transactions ",
                       style: TextStyle(
-                        fontSize: 15,
+                        fontSize: 14,
                         fontWeight: FontWeight.w600,
                         color: Colors.grey.shade700,
                       ),
@@ -142,7 +144,7 @@ class _MainScreenState extends State<MainScreen> {
                               borderRadius: BorderRadius.circular(100)),
                         ),
                         Text(
-                          "Income",
+                          "Credit",
                           style: TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.w600,
@@ -154,21 +156,7 @@ class _MainScreenState extends State<MainScreen> {
                         ),
                       ],
                     ),
-                    // const SizedBox(
-                    //   width: 5,
-                    // ),
-                    // Text(
-                    //   "&",
-                    //   style: TextStyle(
-                    //     fontSize: 14,
-                    //     fontWeight: FontWeight.w600,
-                    //     color: Theme.of(context)
-                    //         .colorScheme
-                    //         .onBackground
-                    //         .withOpacity(0.3),
-                    //   ),
-                    //
-                    // ),
+
                     const SizedBox(
                       width: 5,
                     ),
@@ -185,7 +173,7 @@ class _MainScreenState extends State<MainScreen> {
                               borderRadius: BorderRadius.circular(100)),
                         ),
                         Text(
-                          "Expenses",
+                          "Debit",
                           style: TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.w600,
@@ -206,7 +194,7 @@ class _MainScreenState extends State<MainScreen> {
               height: 15,
             ),
 
-            TransactionsCard(month: selectedMonth,)
+            BusinessTransactionsCard(month: selectedMonth,)
           ],
         ),
       ),

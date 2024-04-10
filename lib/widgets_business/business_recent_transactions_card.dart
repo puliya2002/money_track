@@ -5,8 +5,10 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:money_track/data/icons_list_expense.dart';
 import 'package:money_track/model/transaction_card_model.dart';
 
-class TransactionsCard extends StatelessWidget {
-  TransactionsCard({super.key, required this.month});
+import '../model/business_transaction_card_model.dart';
+
+class BusinessTransactionsCard extends StatelessWidget {
+  BusinessTransactionsCard({super.key, required this.month});
   final String month;
 
   @override
@@ -34,7 +36,7 @@ class RecentTransactionList extends StatelessWidget {
       stream: FirebaseFirestore.instance
           .collection('users')
           .doc(userId)
-          .collection("transactions")
+          .collection("business_transactions")
           .where('monthyear', isEqualTo: month)
           .orderBy('timestamp', descending: true)
           // .limit(30)
@@ -57,7 +59,7 @@ class RecentTransactionList extends StatelessWidget {
           itemCount: data.length,
           itemBuilder: (context, index) {
             var cardData = data[index];
-            return TransactionModel(data: cardData);
+            return BusinessTransactionModel(data: cardData);
           },
         );
       },
