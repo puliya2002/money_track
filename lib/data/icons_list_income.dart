@@ -15,7 +15,7 @@ class AppIconsIncome {
 
     {
       "name" : "Savings",
-      "icon" : FontAwesomeIcons.moneyBillTrendUp,
+      "icon" : FontAwesomeIcons.piggyBank,
     },
 
 

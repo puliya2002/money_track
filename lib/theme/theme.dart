@@ -10,6 +10,7 @@ final ThemeData lightMode = ThemeData(
     secondary: Color(0xFF6dd2ff),
     primaryContainer: Colors.white,
     secondaryContainer: Color(0xFF363636),
+    inversePrimary: Colors.yellow,
     shadow: Color(0xFF2291fd),
   ),
 );
@@ -23,6 +24,7 @@ final ThemeData darkMode = ThemeData(
     secondary: Color(0xFF009ffa),
     primaryContainer: Color(0xFF383838),
     secondaryContainer: Colors.black,
+    inversePrimary: Colors.yellow.withOpacity(0.2),
     shadow: Color(0xFF000046).withOpacity(0.5),
   ),
 );
