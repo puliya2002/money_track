@@ -1,6 +1,8 @@
-import 'package:money_track/screens/login_screen.dart';
-import 'package:money_track/screens/register_screen.dart';
+
 import 'package:flutter/material.dart';
+
+import '../screens/personal/login_screen.dart';
+import '../screens/personal/register_screen.dart';
 
 class AuthPage extends StatefulWidget {
   const AuthPage({super.key});

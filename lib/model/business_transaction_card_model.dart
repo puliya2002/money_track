@@ -6,10 +6,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
-import '../data/icons_list_expense.dart';
-import '../data/icons_list_income.dart';
-import '../data_business/business_icons_list_expense.dart';
-import '../data_business/business_icons_list_income.dart';
+import '../category_data/business_icons_list_expense.dart';
+import '../category_data/business_icons_list_income.dart';
 import '../provider/currency_provider.dart';
 
 class BusinessTransactionModel extends StatefulWidget {
