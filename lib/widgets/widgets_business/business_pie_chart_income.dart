@@ -63,7 +63,7 @@ class BusinessPieChartIncome extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "Credit Pie Chart",
+              "Income Pie Chart",
 
               style: TextStyle(
                 fontSize: 15,

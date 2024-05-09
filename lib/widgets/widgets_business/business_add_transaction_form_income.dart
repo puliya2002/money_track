@@ -167,7 +167,7 @@ class _BusinessAddTransactionFormIncomeState extends State<BusinessAddTransactio
                 },
                 child: isLoader
                     ? Center(child: CircularProgressIndicator())
-                    : Text('Add Credit', style: TextStyle(fontSize: 15),),)
+                    : Text('Add Income', style: TextStyle(fontSize: 15),),)
           ],
         ),
       ),
