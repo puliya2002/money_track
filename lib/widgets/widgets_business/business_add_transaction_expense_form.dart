@@ -165,7 +165,7 @@ class _BusinessAddTransactionFormExpenseState extends State<BusinessAddTransacti
                 },
                 child: isLoader
                     ? Center(child: CircularProgressIndicator())
-                    : Text('Add Expense', style: TextStyle(fontSize: 15)))
+                    : Text('Add Debit', style: TextStyle(fontSize: 15)))
           ],
         ),
       ),

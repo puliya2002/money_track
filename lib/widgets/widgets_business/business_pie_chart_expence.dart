@@ -74,7 +74,7 @@ class BusinessPieChartExpence extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "Expence Pie Chart",
+              "Debit Pie Chart",
 
               style: TextStyle(
                 fontSize: 15,
