@@ -1,30 +1,25 @@
 import 'dart:io';
 
 import 'package:money_track/provider/business_personal_provider.dart';
-import 'package:money_track/screens/business/main_screen_business.dart';
-import 'package:money_track/screens/business/states_screen_business.dart';
-import 'package:money_track/screens/personal/foget_password_screen.dart';
+import 'package:money_track/screens/foget_password_screen.dart';
+import 'package:money_track/screens/home_screen.dart';
+import 'package:money_track/screens/main_screen.dart';
+import 'package:money_track/screens/pie_chart_screen.dart';
+import 'package:money_track/screens/profile_screen.dart';
+import 'package:money_track/screens/register_screen.dart';
+import 'package:money_track/screens/states_screen.dart';
+import 'package:money_track/screens_business/home_screen_business.dart';
+import 'package:money_track/screens_business/main_screen_business.dart';
+import 'package:money_track/screens_business/pie_chart_screen_business.dart';
 
-import 'package:money_track/screens/personal/home_screen.dart';
-import 'package:money_track/screens/personal/login_screen.dart';
-import 'package:money_track/screens/personal/main_screen.dart';
-import 'package:money_track/screens/personal/pie_chart_screen.dart';
-import 'package:money_track/screens/personal/profile_screen.dart';
-import 'package:money_track/screens/personal/register_screen.dart';
-import 'package:money_track/screens/personal/states_screen.dart';
-
-import 'package:money_track/screens/business/home_screen_business.dart';
-
-import 'package:money_track/screens/business/pie_chart_screen_business.dart';
-
-
+import 'package:money_track/screens_business/states_screen_business.dart';
 import 'package:money_track/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:money_track/provider/theme_provider.dart';
 import 'package:provider/provider.dart';
 
-
+import 'screens/login_screen.dart';
 import 'auth/main_page.dart';
 import 'provider/currency_provider.dart';
 
